@@ -971,9 +971,8 @@ server
 
 dperf每秒输出的bitsRx与bitsTx，这就是每秒上行带宽与下行带宽，bitsRx+bitsTx就是总带宽,<br>单位是比特每秒(bits/s)。注意，测试结束后的bitRx与bitsTx是total值不是速度值。
 
-补充两个举例,供参考
+补充两个举例,供参考<br>
 例1：测试8Gbps双向带宽应该如何配置客户端
-
 计算方法 8Gbps ~= 1个CPU x 1000字节 x 8bits x 1000请求/秒 * 1000个连接
 ```
 mode client
@@ -985,7 +984,6 @@ keepalive 1ms
 cpu 0
 ```
 例2：测试100Gbps双向带宽应该如何配置客户端
-
 计算方法 100Gbps ~= 4个CPU x 1000字节 x 8bits x 1000请求/秒 * 3200个连接
 ```
 mode client
