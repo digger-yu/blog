@@ -61,9 +61,9 @@
 
 # 1. 项目简介
 
-|            | 参考链接
-| ---------- | ----------------------- |
-| 项目地址   | https://github.com/baidu/|
+|            | 参考链接                                                                                                      |
+| ---------- | ------------------------------------------------------------------------------------------------------------- |
+| 项目地址   | https://github.com/baidu/                                                                                     |
 | 实现原理   | https://github.com/baidu/dperf/blob/main/docs/design-CN.md                                                    |
 | 参考链接   | [How to set up baidu dperf](https://metonymical.hatenablog.com/entry/2022/02/11/234927)                       |
 |            | [dperf 快速上手](https://zhuanlan.zhihu.com/p/451340043)                                                      |
@@ -969,11 +969,12 @@ server
 | client | 957,315,728 | 86,612,016    | 1043927744        | 1043.927744 |
 | server | 86,636,816  | 1,015,115,136 | 1101751952        | 1101.751952 |
 
-dperf每秒输出的bitsRx与bitsTx，这就是每秒上行带宽与下行带宽，bitsRx+bitsTx就是总带宽,<br>单位是比特每秒(bits/s)。注意，测试结束后的bitRx与bitsTx是total值不是速度值。
+dperf 每秒输出的 bitsRx 与 bitsTx，这就是每秒上行带宽与下行带宽，bitsRx+bitsTx 就是总带宽,<br>单位是比特每秒(bits/s)。注意，测试结束后的 bitRx 与 bitsTx 是 total 值不是速度值。
 
 补充两个举例,供参考<br>
-例1：测试8Gbps双向带宽应该如何配置客户端
-计算方法 8Gbps ~= 1个CPU x 1000字节 x 8bits x 1000请求/秒 * 1000个连接
+例 1：测试 8Gbps 双向带宽应该如何配置客户端
+计算方法 8Gbps ~= 1 个 CPU x 1000 字节 x 8bits x 1000 请求/秒 \* 1000 个连接
+
 ```
 mode client
 tx_burst 4
@@ -983,8 +984,10 @@ pakcet_size 1000
 keepalive 1ms
 cpu 0
 ```
-例2：测试100Gbps双向带宽应该如何配置客户端
-计算方法 100Gbps ~= 4个CPU x 1000字节 x 8bits x 1000请求/秒 * 3200个连接
+
+例 2：测试 100Gbps 双向带宽应该如何配置客户端
+计算方法 100Gbps ~= 4 个 CPU x 1000 字节 x 8bits x 1000 请求/秒 \* 3200 个连接
+
 ```
 mode client
 tx_burst 16
@@ -994,6 +997,7 @@ pakcet_size 1000
 keepalive 1ms
 cpu 0 1 2 3
 ```
+
 ## 13.2 CPS
 
 1. 新建连接数测试不能开启 keepalive
