@@ -24,8 +24,10 @@ git config --global user.signingkey 93F04D48749C0243
 git commit -S -m "..."
 
 在计算机上的任何本地存储库中默认对所有提交进行签名，请运行
+```
 git config --global commit.gpgsign true
-
+git config --global tag.gpgSign true
+```
 ## 信任Github的GPG密钥
 在Github网页端进行的操作，比如创建仓库。这些commit并没有用我们之前生成的密钥进行签名，而是由Github代为签名了。这样的结果就是，我们本地无法确认这些签名的真实性。
 为了解决这个问题，我们需要导入并信任Github所用的GPG密钥。
@@ -43,6 +45,8 @@ gpg --sign-key 4AEE18F83AFDEB23
 再尝试查看本地仓库的commit签名信息，则会发现所有的commit签名都已得到验证
 git log --show-signature
 
+
+
 ## 编辑信任
 ```
 $ gpg --edit-key 998088DC253D39817158F9A293F04D48749C0243
@@ -51,6 +55,11 @@ trust
 yes
 quit
 ```
+## VSCode设置，
+
+转到首选项 > 设置，然后搜索git.enableCommitSigning. 打开此设置
+
+
 ## 更改密码
 ```
 $ gpg --edit-key 998088DC253D39817158F9A293F04D48749C0243
