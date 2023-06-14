@@ -49,7 +49,7 @@ async function deleteStaleBranches(delay=500) {
 
 (() => { deleteStaleBranches(500); })();
 ```
-![delete branch](img\delete_branch.png)
+![delete branch](/img/delete_branch.png)
 
 # git reset 
 ```dotnetcli
