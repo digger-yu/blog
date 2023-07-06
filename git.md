@@ -32,7 +32,9 @@ git log | grep Author: | sort | uniq
 # Git中只克隆一个特定分支
 
 ```dotnetcli
-git clone -b dev --single-branch <repository URL>
+git clone -b main --single-branch <repository URL>
+
+#main 分支名
 ```
 
 # 批量删除远程不活跃的分支
