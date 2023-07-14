@@ -212,3 +212,8 @@ git config --global core.preloadindex true
 git config --global core.fscache true
 git config --global gc.auto 256
 ```
+# git 添加证书信任
+```dotnetcli
+git config user.signingKey 749C0243
+git config commit.gpgSign true
+``````
