@@ -4,10 +4,11 @@
 gpg --full-generate-key
 
 ## 列出本地存储的所有GPG密钥信息
+```dotnetcli
 gpg --list-keys
 gpg --list-keys --keyid-format=short
 gpg --list-keys --keyid-format=long
-
+``````
 - pub其后的是该密钥的公钥特征，包括了密钥的参数（加密算法是rsa，长度为2048，生成于2019-08-04，用途是Signing和Certificating，一年之后过期）以及密钥的ID。
 - uid其后的是生成密钥时所输入的个人信息。
 - sub其后的则是该密钥的子密钥特征，格式和公钥部分大致相同（E表示用途是Encrypting）。
