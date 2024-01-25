@@ -217,3 +217,15 @@ git config --global gc.auto 256
 git config user.signingKey 749C0243
 git config commit.gpgSign true
 ``````
+# git diff
+
+```dotnetcli
+git diff --color-words
+
+grep -rn "enable" ./* --colour=auto
+git commit -S -am "fix typo"
+git push origin main:patch1
+
+#查看某次提交修改的所有文件
+git show --raw commit_id
+```
