@@ -229,3 +229,14 @@ git push origin main:patch1
 #查看某次提交修改的所有文件
 git show --raw commit_id
 ```
+# personal 
+```dotnetcli
+user.name=digger yu
+user.email=digger-yu@outlook.com
+user.signingkey=93F04D48749C0243
+commit.gpgsign=true
+core.autocrlf=false
+alias.tbmain=!git fetch --all && git reset --hard origin/main && git pull origin main
+alias.tbmaster=!git fetch --all && git reset --hard origin/master && git pull origin master
+
+```
