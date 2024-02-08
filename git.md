@@ -231,12 +231,25 @@ git show --raw commit_id
 ```
 # personal 
 ```dotnetcli
-user.name=digger yu
-user.email=digger-yu@outlook.com
-user.signingkey=93F04D48749C0243
-commit.gpgsign=true
-core.autocrlf=false
-alias.tbmain=!git fetch --all && git reset --hard origin/main && git pull origin main
-alias.tbmaster=!git fetch --all && git reset --hard origin/master && git pull origin master
+git config --list
+git config --global user.name "digger yu"
+git config --global user.email digger-yu@outlook.com
+git config --global user.signingkey 93F04D48749C0243
+
+git config --global alias.tbmain '!git fetch --all && git reset --hard origin/main && git pull origin main'
+git config --global alias.tbmaster '!git fetch --all && git reset --hard origin/master && git pull origin master'
+
+
+gpg --list-keys
+gpg --import public-file.key
+gpg --import private-file.key
+
+gpg --edit-key 93F04D48749C0243
+trust
+5
+yes
+
+删除
+gpg --delete-keys 4AEE18F83AFDEB23
 
 ```
