@@ -248,7 +248,7 @@ gpg --edit-key 93F04D48749C0243
 trust
 5
 yes
-
+curl https://github.com/web-flow.gpg | gpg --import
 删除
 gpg --delete-keys 4AEE18F83AFDEB23
 
