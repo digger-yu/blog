@@ -235,21 +235,44 @@ git config --list
 git config --global user.name "digger yu"
 git config --global user.email digger-yu@outlook.com
 git config --global user.signingkey 93F04D48749C0243
-
 git config --global alias.tbmain '!git fetch --all && git reset --hard origin/main && git pull origin main'
 git config --global alias.tbmaster '!git fetch --all && git reset --hard origin/master && git pull origin master'
-
 
 gpg --list-keys
 gpg --import public-file.key
 gpg --import private-file.key
+导出
+#gpg -a -o public.key --export 93F04D48749C0243
+#gpg -a -o private.key --export-secret-keys 93F04D48749C0243
 
 gpg --edit-key 93F04D48749C0243
 trust
 5
 yes
-
+curl https://github.com/web-flow.gpg | gpg --import
 删除
 gpg --delete-keys 4AEE18F83AFDEB23
+gpg --sign-key B5690EEEBB952194
+
+pip升级及更改源
+python -m pip install --upgrade pip
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
+如果用ssh的方式git clone出现需要输入密码
+Enter passphrase for key '/c/Users/digger/.ssh/id_rsa':
+可以将密码设置为空,以源密码为123456举例,之后就不需要输入密码了
+$ ssh-keygen -p -P 123456 -N '' -f id_rsa
+ssh-keygen -p [-P old_passphrase][-N new_passphrase] [-f keyfile]
 
 ```
+# git 设置代理
+
+```
+设置代理
+git config --global http.proxy socks5://127.0.0.1:1080git config --global https.proxy socks5://127.0.0.1:1080
+取消代理
+git config --global --unset http.proxygit config --global --unset https.proxy
+只对github进行代理
+git config --global http.https://github.com.proxy socks5://127.0.0.1:10808git config --global https.https://github.com.proxy socks5://127.0.0.1:10808
+```
+
