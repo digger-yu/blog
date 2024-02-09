@@ -235,14 +235,15 @@ git config --list
 git config --global user.name "digger yu"
 git config --global user.email digger-yu@outlook.com
 git config --global user.signingkey 93F04D48749C0243
-
 git config --global alias.tbmain '!git fetch --all && git reset --hard origin/main && git pull origin main'
 git config --global alias.tbmaster '!git fetch --all && git reset --hard origin/master && git pull origin master'
-
 
 gpg --list-keys
 gpg --import public-file.key
 gpg --import private-file.key
+导出
+#gpg -a -o public.key --export 93F04D48749C0243
+#gpg -a -o private.key --export-secret-keys 93F04D48749C0243
 
 gpg --edit-key 93F04D48749C0243
 trust
