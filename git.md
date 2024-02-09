@@ -251,5 +251,5 @@ yes
 curl https://github.com/web-flow.gpg | gpg --import
 删除
 gpg --delete-keys 4AEE18F83AFDEB23
-
+gpg --sign-key B5690EEEBB952194
 ```
