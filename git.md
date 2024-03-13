@@ -265,3 +265,14 @@ $ ssh-keygen -p -P 123456 -N '' -f id_rsa
 ssh-keygen -p [-P old_passphrase][-N new_passphrase] [-f keyfile]
 
 ```
+# git 设置代理
+
+```
+设置代理
+git config --global http.proxy socks5://127.0.0.1:1080git config --global https.proxy socks5://127.0.0.1:1080
+取消代理
+git config --global --unset http.proxygit config --global --unset https.proxy
+只对github进行代理
+git config --global http.https://github.com.proxy socks5://127.0.0.1:10808git config --global https.https://github.com.proxy socks5://127.0.0.1:10808
+```
+
