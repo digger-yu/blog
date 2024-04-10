@@ -228,6 +228,9 @@ git push origin main:patch1
 
 #查看某次提交修改的所有文件
 git show --raw commit_id
+
+#查看远程patch1分支的修改
+git show refs/remotes/origin/patch1 --color-words
 ```
 # personal 
 ```dotnetcli
