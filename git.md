@@ -261,6 +261,24 @@ pip升级及更改源
 python -m pip install --upgrade pip
 pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 
+创建ssh密钥
+cd ~/.ssh
+如果没有这个目录则创建
+ssh-keygen -t rsa -c "digger-yu@outlook.com"
+三次回车
+打开.ssh目录下id_rsa.pub 复制里面的内容
+登录自己的github
+添加这个ssh密钥
+填写名字
+然后命令行使用下面的命令进行测试，输入yes
+$ ssh -T git@github.com
+The authenticity of host 'github.com (140.82.116.4)' can't be established.
+ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
+Hi digger-yu! You've successfully authenticated, but GitHub does not provide shell access.
+
 如果用ssh的方式git clone出现需要输入密码
 Enter passphrase for key '/c/Users/digger/.ssh/id_rsa':
 可以将密码设置为空,以源密码为123456举例,之后就不需要输入密码了
