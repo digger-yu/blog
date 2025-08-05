@@ -268,11 +268,21 @@ ssh-keygen -p [-P old_passphrase][-N new_passphrase] [-f keyfile]
 # git 设置代理
 
 ```
-设置代理
-git config --global http.proxy socks5://127.0.0.1:1080git config --global https.proxy socks5://127.0.0.1:1080
-取消代理
-git config --global --unset http.proxygit config --global --unset https.proxy
+设置全局代理
+git config --global http.proxy socks5://127.0.0.1:1080   
+git config --global https.proxy socks5://127.0.0.1:7897
+取消全局代理
+git config --global --unset http.proxy   
+git config --global --unset https.proxy
+
+设置对当前项目生效的代理
+git config https.proxy https://proxy_host:proxy_port
+取消项目代理
+git config --unset https.proxy
+
 只对github进行代理
-git config --global http.https://github.com.proxy socks5://127.0.0.1:10808git config --global https.https://github.com.proxy socks5://127.0.0.1:10808
+git config --global http.https://github.com.proxy socks5://127.0.0.1:10808
+git config --global https.https://github.com.proxy socks5://127.0.0.1:10808
 ```
+
 
