@@ -1,40 +1,47 @@
 
-# ISO
+# 1. 环境准备
 安装源地址 http://mirrors.aliyun.com/centos/7/os/x86_64/   
 系统镜像   https://mirrors.aliyun.com/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-DVD-2207-02.iso
 
-ctrl+alt+f2 进入终端, 卸载首次安装后的初始化流程
 ```
+如果安装的测试服务器包括图形界面，重启后首次进入系统会有初始化流程
+ctrl+alt+f2 进入终端, 卸载首次安装后的初始化流程
+
 yum remove gnome-initial-setup.x86_64
 reboot
 ```
 
-# 更改yum源  
+## 1.1 更改yum源  
 ```
 curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo
 ```
 
-#安装软件包
+## 1.2 安装软件包
 ```bash
 yum -y install dhcp xinetd tftp tftp-server httpd 
 yum -y install system-config-kickstart
 yum -y install syslinux
 ```
-# 准备
+## 1.3 防火墙&selinux
 ```bash
-systemctl stop firewalld
-systemctl disable firewalld
-setenforce 0
-vi /etc/selinux/config
-disabled
-vim /etc/resolv.conf
-vim /etc/sysconfig/network-scripts/ifcfg-ens160
+systemctl stop firewalld && systemctl disable firewalld
+sed -i 's/^SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
+reboot
+getenforce
 ```
-
-# 网卡配置固定ip <br>
-vmware 虚拟机里面如果网卡选择vmnet8,需要关闭dhcp
+## 1.4 安装图形界面
+```bash
+ 如果是最小安装，后续需要安装图形化：
+[root@localhost ~]# yum -y groupinstall "Server with GUI" 
+[root@localhost ~]# systemctl set-default graphical.target  // 设置默认启动到图形界面
+[root@localhost ~]# reboot      // 重启机器
+```
+## 1.5  网卡配置固定ip <br>
+vmware环境里面如果网卡选择vmnet8,需要关闭VMware dhcp
 
 ```bash
+vim /etc/resolv.conf
+
 [root@localhost ~]# cd /etc/sysconfig/network-scripts/
 [root@localhost network-scripts]# cat ifcfg-ens160 
 TYPE=Ethernet
@@ -58,7 +65,7 @@ GATEWAY=192.168.7.2
 DNS1=192.168.7.2
 [root@localhost network-scripts]# 
 ```
-# dhcp 配置
+# 2. dhcp 配置
 ```bash
 vi /etc/dhcp/dhcpd.conf 
 subnet 192.168.7.0 netmask 255.255.255.0 {
@@ -72,9 +79,15 @@ subnet 192.168.7.0 netmask 255.255.255.0 {
     next-server 192.168.7.100;
 }
 ```
-# pxe repo 配置
+## 2.1 启动dhcp服务
+```bash
+systemctl start dhcpd
+systemctl enable dhcpd
+```
+# 3. 源配置
 ```bash
 vi /etc/yum.repos.d/pxe.repo
+# 名称必须为 “development”，否则到后面kickstart配置会出现软件包选择出现没有软件包信息
 [development]
 name=pxe
 baseurl=http://192.168.7.100/pub
@@ -82,17 +95,13 @@ enabled=1
 gpgcheck=0
 ```
 
-```bash
-Systemctl restart httpd
-mkdir /var/www/html/pub
-挂载镜像
-mount /dev/cdrom /var/www/html/pub
- service httpd restart
-```
 
-# tftp 配置
+
+# 4. tftp 配置
 ```bash
 vi /etc/xinetd.d/tftp
+#将wait disable 设置为 no
+
 # default: off
 # description: The tftp server serves files using the trivial file transfer \
 #        protocol.  The tftp protocol is often used to boot diskless \
@@ -102,7 +111,7 @@ service tftp
 {
         socket_type                = dgram
         protocol                = udp
-        wait                        = yes
+        wait                        = no
         user                        = root
         server                        = /usr/sbin/in.tftpd
         server_args                = -s /var/lib/tftpboot
@@ -112,22 +121,38 @@ service tftp
         flags                        = IPv4
 }
 ```
+## 4.1 启动tftp服务
 ```bash
-service xinetd restart
-systemctl restart xinetd.service
-systemctl restart tftp
-systemctl restart tftp.socket
+ tftp 服务是挂载在超级进程 xinetd 下的，所以通过启动 xinetd 来启动 tftp 服务
+systemctl start xinetd
+systemctl enable xinetd
 ```
+# 5. 配置httpd服务
 
-拷贝文件
+```bash
+mkdir /var/www/html/pub
+挂载镜像
+mount /dev/cdrom /var/www/html/pub
+```
+## 5.1 启动服务
+```bash
+systemctl start httpd
+systemctl enable httpd
+```
+# 6.修改default配置
+
+安装syslinux只是为了要 pxelinux.0 引导加载程序  
+拷贝配置文件
 ```bash
 cp /usr/share/syslinux/pxelinux.0 /var/lib/tftpboot/
 
 mkdir /var/lib/tftpboot/pxelinux.cfg
 cp /var/www/html/pub/isolinux/isolinux.cfg /var/lib/tftpboot/pxelinux.cfg/default 
 ```
-# pxelinux.cfg/default
-主要修改61-71行 label linux 处
+#主要修改61-71行 label linux 处   
+#append initrd=initrd.img ks     // 存放ks配置文件的服务器地址和路径，通过该路径找到对应的ks123.cfg文件来引导系统安装   
+#default linux            # 在配置文件第一行找到default，加上label的名称即可。
+
 vi /var/lib/tftpboot/pxelinux.cfg/default
 ```bash
 default vesamenu.c32
@@ -247,23 +272,37 @@ label returntomain
 menu end
 ```
 
-# 创建ks目录
- mkdir /var/www/html/ks   
- vmware虚拟机图形界面执行   
-system-config-kickstart   
-![alt text](img\pxe\image-1.png)  
-![alt text](img\pxe\image-2.png)   
-![alt text](img\pxe\image-3.png)   
-![alt text](img\pxe\image-4.png)   
-![alt text](img\pxe\image-5.png)   
-![alt text](img\pxe\image-6.png)   
-拷贝ks配置到ks目录
+# 7. kickstart
+## 7.1 安装kickstart
+```bash
+yum install system-config-kickstart -y
+```
+## 7.2 创建目录
+```bash
+ mkdir /var/www/html/ks
+```
+  
+ ## 7.3 桌面环境下配置Kickstart，生成ks配置文件 
+ 桌面环境下执行
+ ```bash
+system-config-kickstart
+```
+![alt text](./img/pxe/image.png)
+![alt text](./img/pxe/image-1.png)  
+![alt text](./img/pxe/image-2.png)   
+![alt text](./img/pxe/image-3.png)   
+![alt text](./img/pxe/image-4.png)   
+![alt text](./img/pxe/image-5.png)   
+![alt text](./img/pxe/image-6.png) 
+<img width="1130" height="628" alt="image" src="https://github.com/user-attachments/assets/ba831134-7999-4c0a-a2d2-7c01863f3604" />
+
+## 7.4 拷贝ks配置到ks目录
 ```bash
 cp ks123.cfg /var/www/html/ks/
 cp /var/www/html/pub/isolinux/* /var/lib/tftpboot/
 ```
 
-# ks123.cfg
+# 7.5  ks123.cfg
 ```bash
 
 #platform=x86, AMD64, 或 Intel EM64T
