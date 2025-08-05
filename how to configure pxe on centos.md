@@ -250,13 +250,16 @@ menu end
 # 创建ks目录
  mkdir /var/www/html/ks   
  vmware虚拟机图形界面执行   
-system-config-kickstart   
-![alt text](img\pxe\image-1.png)  
-![alt text](img\pxe\image-2.png)   
-![alt text](img\pxe\image-3.png)   
-![alt text](img\pxe\image-4.png)   
-![alt text](img\pxe\image-5.png)   
-![alt text](img\pxe\image-6.png)   
+system-config-kickstart  
+![alt text](./img/pxe/image.png)
+![alt text](./img/pxe/image-1.png)  
+![alt text](./img/pxe/image-2.png)   
+![alt text](./img/pxe/image-3.png)   
+![alt text](./img/pxe/image-4.png)   
+![alt text](./img/pxe/image-5.png)   
+![alt text](./img/pxe/image-6.png) 
+<img width="1130" height="628" alt="image" src="https://github.com/user-attachments/assets/ba831134-7999-4c0a-a2d2-7c01863f3604" />
+
 拷贝ks配置到ks目录
 ```bash
 cp ks123.cfg /var/www/html/ks/
