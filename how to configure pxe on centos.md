@@ -138,6 +138,7 @@ service tftp
 cp /var/www/html/pub/isolinux/* /var/lib/tftpboot/
 #安装syslinux只是为了要 pxelinux.0 引导加载程序
 cp /usr/share/syslinux/pxelinux.0 /var/lib/tftpboot/
+
 ```
 ## 5.2 启动tftp服务
 ```bash
@@ -146,8 +147,6 @@ systemctl start xinetd
 systemctl enable xinetd
 ```
 # 6.修改default配置
-
-安装syslinux只是为了要 pxelinux.0 引导加载程序  
 拷贝配置文件
 ```bash
 mkdir /var/lib/tftpboot/pxelinux.cfg
@@ -287,7 +286,7 @@ yum install system-config-kickstart -y
 ```
   
  ## 7.3 桌面环境下配置Kickstart，生成ks配置文件 
- 桌面环境下执行
+ 
  ```bash
 system-config-kickstart
 ```
@@ -303,7 +302,6 @@ system-config-kickstart
 ## 7.4 拷贝ks配置到ks目录
 ```bash
 cp ks123.cfg /var/www/html/ks/
-cp /var/www/html/pub/isolinux/* /var/lib/tftpboot/
 ```
 
 # 7.5  ks123.cfg
