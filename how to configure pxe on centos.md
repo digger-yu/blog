@@ -16,7 +16,7 @@ reboot
 curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo
 ```
 
-## 1.2 安装软件包
+## 1.2 安装基础软件包
 ```bash
 yum -y install dhcp xinetd tftp tftp-server httpd 
 yum -y install system-config-kickstart
@@ -95,9 +95,20 @@ enabled=1
 gpgcheck=0
 ```
 
+# 4. 配置httpd服务
 
+```bash
+mkdir /var/www/html/pub
+挂载镜像,拷贝文件
+mount /dev/cdrom /var/www/html/pub
+```
+## 4.1 启动服务
+```bash
+systemctl start httpd
+systemctl enable httpd
+```
 
-# 4. tftp 配置
+# 5. tftp 配置
 ```bash
 vi /etc/xinetd.d/tftp
 #将wait disable 设置为 no
@@ -121,31 +132,23 @@ service tftp
         flags                        = IPv4
 }
 ```
-## 4.1 启动tftp服务
+
+## 5.1 复制文件
+```bash
+cp /var/www/html/pub/isolinux/* /var/lib/tftpboot/
+#安装syslinux只是为了要 pxelinux.0 引导加载程序
+cp /usr/share/syslinux/pxelinux.0 /var/lib/tftpboot/
+
+```
+## 5.2 启动tftp服务
 ```bash
  tftp 服务是挂载在超级进程 xinetd 下的，所以通过启动 xinetd 来启动 tftp 服务
 systemctl start xinetd
 systemctl enable xinetd
 ```
-# 5. 配置httpd服务
-
-```bash
-mkdir /var/www/html/pub
-挂载镜像
-mount /dev/cdrom /var/www/html/pub
-```
-## 5.1 启动服务
-```bash
-systemctl start httpd
-systemctl enable httpd
-```
 # 6.修改default配置
-
-安装syslinux只是为了要 pxelinux.0 引导加载程序  
 拷贝配置文件
 ```bash
-cp /usr/share/syslinux/pxelinux.0 /var/lib/tftpboot/
-
 mkdir /var/lib/tftpboot/pxelinux.cfg
 cp /var/www/html/pub/isolinux/isolinux.cfg /var/lib/tftpboot/pxelinux.cfg/default 
 ```
@@ -283,7 +286,7 @@ yum install system-config-kickstart -y
 ```
   
  ## 7.3 桌面环境下配置Kickstart，生成ks配置文件 
- 桌面环境下执行
+ 
  ```bash
 system-config-kickstart
 ```
@@ -299,7 +302,6 @@ system-config-kickstart
 ## 7.4 拷贝ks配置到ks目录
 ```bash
 cp ks123.cfg /var/www/html/ks/
-cp /var/www/html/pub/isolinux/* /var/lib/tftpboot/
 ```
 
 # 7.5  ks123.cfg
