@@ -149,8 +149,10 @@ mount --mkdir /dev/sda1 /mnt/boot  # 挂载 /boot 分区
 ```
 ## 1.4 源配置
 ```bash
-systemctl stop reflector
-curl -L 'https://archlinux.org/mirrorlist/?country=CN&protocol=https' -o /etc/pacman.d/mirrorlist
+reflector --latest 5 --protocol https --sort rate --country CN --save /etc/pacman.d/mirrorlist
+
+#systemctl stop reflector
+#curl -L 'https://archlinux.org/mirrorlist/?country=CN&protocol=https' -o /etc/pacman.d/mirrorlist
 vim /etc/pacman.d/mirrorlist
 
 # 修改 /etc/pacman.conf
@@ -296,8 +298,10 @@ mount --mkdir /dev/sda1 /mnt/boot  # 挂载 /boot 分区
 ```
 ## 2.3 源配置
 ```bash
-systemctl stop reflector
-curl -L 'https://archlinux.org/mirrorlist/?country=CN&protocol=https' -o /etc/pacman.d/mirrorlist
+reflector --latest 5 --protocol https --sort rate --country CN --save /etc/pacman.d/mirrorlist
+
+#systemctl stop reflector
+#curl -L 'https://archlinux.org/mirrorlist/?country=CN&protocol=https' -o /etc/pacman.d/mirrorlist
 vim /etc/pacman.d/mirrorlist
 pacman -Sy pacman-mirrorlist
 # 修改 /etc/pacman.conf
