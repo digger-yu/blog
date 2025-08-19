@@ -299,8 +299,12 @@ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 ```dotnetcli
 gcc --version
 ```
-
-## 1.6  official website
+## 1.6 change source
+```
+xlings self config --res-server https://gitcode.com/xlings-res
+xlings self config --res-server https://github.com/xlings-res
+```
+## 1.7  official website
 
 The software is still in the research and development stage, so there may be some minor issues.
 
