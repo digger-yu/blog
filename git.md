@@ -2,7 +2,32 @@
 ```dotnetcli
 git config --list 
 git config --global user.name
-git config --global user.email 
+git config --global user.email
+
+______________________________
+git调试模式
+ GIT_CURL_VERBOSE=1 GIT_TRACE=1 git clone https://github.com/xxx.git
+problem :== Info: Couldn't find host github.com in the .netrc file; using defaults
+
+vi ~/.gitconfig
+[credential]
+    helper = store
+
+vi ~/.netrc
+machine github.com
+    login your-user-name
+    password your-personal-access-token
+登录GitHub：在浏览器中打开GitHub，然后登录您的账户。
+
+创建Personal Access Token：
+
+在页面右上角，点击您的头像，然后点击Settings（设置）。
+在左侧边栏中，点击Developer settings（开发人员设置）。
+在左侧边栏中，找到并单击Personal access tokens（个人访问令牌）。
+单击Generate new token（生成新令牌）按钮。
+为您的令牌指定一个描述性名称，以便于识别。
+选择到期日期。您可以选择默认值或使用日历选择器设置令牌的过期日期。
+选择您要授予此令牌的范围或权限。根据您的需求选择适当的选项，例如repo（存储库）
 ```
 # git 创建切换分支
 ```dotnetcli
@@ -264,6 +289,7 @@ Enter passphrase for key '/c/Users/digger/.ssh/id_rsa':
 $ ssh-keygen -p -P 123456 -N '' -f id_rsa
 ssh-keygen -p [-P old_passphrase][-N new_passphrase] [-f keyfile]
 
+
 ```
 # git 设置代理
 
@@ -284,5 +310,19 @@ git config --unset https.proxy
 git config --global http.https://github.com.proxy socks5://127.0.0.1:10808
 git config --global https.https://github.com.proxy socks5://127.0.0.1:10808
 ```
+# git 加速
+```
+ git config --global --list
+#增加
+ git config --global url."https://gitclone.com/".insteadOf https://
+#删除
+git config --global --unset url."https://gitclone.com/".insteadOf
+```
+
+
+
+
+
+
 
 
