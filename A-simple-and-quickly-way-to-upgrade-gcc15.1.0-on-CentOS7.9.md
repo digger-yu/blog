@@ -265,34 +265,25 @@ bash: gcc: 未找到命令...
 drwxr-sr-x 2 root xlings  6 8月  18 09:39 .
 drwxr-sr-x 3 root xlings 20 8月  18 09:39 ..
 [root@localhost 15.1.0]# source ~/.bashrc
-[root@localhost 15.1.0]# gcc -v
+[root@localhost ~]# gcc -v
 Reading specs from /home/xlings/.xlings_data/xim/xpkgs/musl-gcc/15.1.0/bin/../lib/gcc/x86_64-linux-musl/15.1.0/specs
 COLLECT_GCC=x86_64-linux-musl-gcc
 COLLECT_LTO_WRAPPER=/home/xlings/.xlings_data/xim/xpkgs/musl-gcc/15.1.0/bin/../libexec/gcc/x86_64-linux-musl/15.1.0/lto-wrapper
 Target: x86_64-linux-musl
-Configured with: ../src_gcc/configure --enable-languages=c,c++ --with-specs='%{!static:%{!shared:%{!static-pie: -Wl,--enable-new-dtags -Wl,-rpath,/home/xlings/.xlings_data/lib }}}' --disable-bootstrap --disable-assembly --disable-werror --target=x86_64-linux-musl --prefix= --libdir=/lib --disable-multilib --with-sysroot=/x86_64-linux-musl --enable-tls --disable-libmudflap --disable-libsanitizer --disable-gnu-indirect-function --disable-libmpx --enable-initfini-array --enable-libstdcxx-time=rt --with-build-sysroot=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_sysroot AR_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/binutils/ar AS_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/gas/as-newLD_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/ld/ld-new NM_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/binutils/nm-new OBJCOPY_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/binutils/objcopy OBJDUMP_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/binutils/objdump RANLIB_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/binutils/ranlib READELF_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/binutils/readelf STRIP_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/binutils/strip-new --build=x86_64-pc-linux-muslxx --host=x86_64-pc-linux-muslxx
+Configured with: ../src_gcc/configure --enable-languages=c,c++ CC='gcc -static' CXX='g++ -static' --with-specs='%{input_file:%{!static:%{!shared:%{!static-pie: -Wl,--enable-new-dtags -Wl,-rpath,/home/xlings/.xlings_data/lib }}}}' --disable-bootstrap --disable-assembly --disable-werror --target=x86_64-linux-musl --prefix= --libdir=/lib --disable-multilib --with-sysroot=/x86_64-linux-musl --enable-tls --disable-libmudflap --disable-libsanitizer --disable-gnu-indirect-function --disable-libmpx --enable-initfini-array --enable-libstdcxx-time=rt --with-build-sysroot=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_sysroot AR_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/binutils/ar AS_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/gas/as-new LD_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/ld/ld-new NM_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/binutils/nm-new OBJCOPY_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/binutils/objcopy OBJDUMP_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/binutils/objdump RANLIB_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/binutils/ranlib READELF_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/binutils/readelf STRIP_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/binutils/strip-new --build=x86_64-pc-linux-gnu --host=x86_64-pc-linux-gnu
 Thread model: posix
 Supported LTO compression algorithms: zlib
 gcc version 15.1.0 (GCC)
-COMPILER_PATH=/home/xlings/.xlings_data/xim/xpkgs/musl-gcc/15.1.0/bin/../libexec/gcc/x86_64-linux-musl/15.1.0/:/home/xlings/.xlings_data/xim/xpkgs/musl-gcc/15.1.0/bin/../libexec/gcc/:/home/xlings/.xlings_data/xim/xpkgs/musl-gcc/15.1.0/bin/../lib/gcc/x86_64-linux-musl/15.1.0/../../../../x86_64-linux-musl/bin/
-LIBRARY_PATH=/home/xlings/.xlings_data/xim/xpkgs/musl-gcc/15.1.0/bin/../lib/gcc/x86_64-linux-musl/15.1.0/:/home/xlings/.xlings_data/xim/xpkgs/musl-gcc/15.1.0/bin/../lib/gcc/:/home/xlings/.xlings_data/xim/xpkgs/musl-gcc/15.1.0/bin/../lib/gcc/x86_64-linux-musl/15.1.0/../../../../x86_64-linux-musl/lib/:/home/xlings/.xlings_data/xim/xpkgs/musl-gcc/15.1.0/bin/../x86_64-linux-musl/lib/
-COLLECT_GCC_OPTIONS='-v' '-mtune=generic' '-march=x86-64' '-dumpdir' 'a.'
- /home/xlings/.xlings_data/xim/xpkgs/musl-gcc/15.1.0/bin/../libexec/gcc/x86_64-linux-musl/15.1.0/collect2 --sysroot=/home/xlings/.xlings_data/xim/xpkgs/musl-gcc/15.1.0/bin/../x86_64-linux-musl --eh-frame-hdr -m elf_x86_64 -dynamic-linker /home/xlings/.xlings_data/lib/ld-musl-x86_64.so.1 /home/xlings/.xlings_data/xim/xpkgs/musl-gcc/15.1.0/bin/../lib/gcc/x86_64-linux-musl/15.1.0/../../../../x86_64-linux-musl/lib/crt1.o /home/xlings/.xlings_data/xim/xpkgs/musl-gcc/15.1.0/bin/../lib/gcc/x86_64-linux-musl/15.1.0/../../../../x86_64-linux-musl/lib/crti.o /home/xlings/.xlings_data/xim/xpkgs/musl-gcc/15.1.0/bin/../lib/gcc/x86_64-linux-musl/15.1.0/crtbegin.o -L/home/xlings/.xlings_data/xim/xpkgs/musl-gcc/15.1.0/bin/../lib/gcc/x86_64-linux-musl/15.1.0 -L/home/xlings/.xlings_data/xim/xpkgs/musl-gcc/15.1.0/bin/../lib/gcc -L/home/xlings/.xlings_data/xim/xpkgs/musl-gcc/15.1.0/bin/../lib/gcc/x86_64-linux-musl/15.1.0/../../../../x86_64-linux-musl/lib -L/home/xlings/.xlings_data/xim/xpkgs/musl-gcc/15.1.0/bin/../x86_64-linux-musl/lib --enable-new-dtags -rpath /home/xlings/.xlings_data/lib -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /home/xlings/.xlings_data/xim/xpkgs/musl-gcc/15.1.0/bin/../lib/gcc/x86_64-linux-musl/15.1.0/crtend.o /home/xlings/.xlings_data/xim/xpkgs/musl-gcc/15.1.0/bin/../lib/gcc/x86_64-linux-musl/15.1.0/../../../../x86_64-linux-musl/lib/crtn.o
-/home/xlings/.xlings_data/xim/xpkgs/musl-gcc/15.1.0/bin/../lib/gcc/x86_64-linux-musl/15.1.0/../../../../x86_64-linux-musl/bin/ld: /home/xlings/.xlings_data/xim/xpkgs/musl-gcc/15.1.0/bin/../lib/gcc/x86_64-linux-musl/15.1.0/../../../../x86_64-linux-musl/lib/crt1.o: in function `_start_c':
-crt1.c:(.text._start_c+0x15): undefined reference to `main'
-collect2: error: ld returned 1 exit status
-[root@localhost 15.1.0]#  gcc --version
-x86_64-linux-musl-gcc (GCC) 15.1.0
-Copyright (C) 2025 Free Software Foundation, Inc.
-This is free software; see the source for copying conditions.  There is NO
-warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
-[root@localhost 15.1.0]# g++ --version
-x86_64-linux-musl-g++ (GCC) 15.1.0
-Copyright (C) 2025 Free Software Foundation, Inc.
-This is free software; see the source for copying conditions.  There is NO
-warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
+[root@localhost ~]# g++ -v
+Reading specs from /home/xlings/.xlings_data/xim/xpkgs/musl-gcc/15.1.0/bin/../lib/gcc/x86_64-linux-musl/15.1.0/specs
+COLLECT_GCC=x86_64-linux-musl-g++
+COLLECT_LTO_WRAPPER=/home/xlings/.xlings_data/xim/xpkgs/musl-gcc/15.1.0/bin/../libexec/gcc/x86_64-linux-musl/15.1.0/lto-wrapper
+Target: x86_64-linux-musl
+Configured with: ../src_gcc/configure --enable-languages=c,c++ CC='gcc -static' CXX='g++ -static' --with-specs='%{input_file:%{!static:%{!shared:%{!static-pie: -Wl,--enable-new-dtags -Wl,-rpath,/home/xlings/.xlings_data/lib }}}}' --disable-bootstrap --disable-assembly --disable-werror --target=x86_64-linux-musl --prefix= --libdir=/lib --disable-multilib --with-sysroot=/x86_64-linux-musl --enable-tls --disable-libmudflap --disable-libsanitizer --disable-gnu-indirect-function --disable-libmpx --enable-initfini-array --enable-libstdcxx-time=rt --with-build-sysroot=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_sysroot AR_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/binutils/ar AS_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/gas/as-new LD_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/ld/ld-new NM_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/binutils/nm-new OBJCOPY_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/binutils/objcopy OBJDUMP_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/binutils/objdump RANLIB_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/binutils/ranlib READELF_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/binutils/readelf STRIP_FOR_TARGET=/home/xlings/.xlings_data/xim/xpkgs/musl-cross-make/0.0.1/musl-cross-make/build/local/x86_64-linux-musl/obj_binutils/binutils/strip-new --build=x86_64-pc-linux-gnu --host=x86_64-pc-linux-gnu
+Thread model: posix
+Supported LTO compression algorithms: zlib
+gcc version 15.1.0 (GCC)
+[root@localhost ~]#
 ```
 
 ## 1.5 Check gcc version
@@ -304,7 +295,16 @@ gcc --version
 xlings self config --res-server https://gitcode.com/xlings-res
 xlings self config --res-server https://github.com/xlings-res
 ```
-## 1.7  official website
+## 1.7 reinstall 
+```
+xlings remove gcc@15
+xlings remove musl-gcc@15
+xlings self clean
+xlings install gcc@15
+```
+
+
+## 1.8  official website
 
 The software is still in the research and development stage, so there may be some minor issues.
 
