@@ -12,6 +12,7 @@ git config --list
 git config --global user.name "digger yu"
 git config --global user.email digger-yu@outlook.com
 git config --global user.signingkey 93F04D48749C0243
+git config --global log.showSignature true
 git config --global commit.gpgsign ture
 git config --local commit.gpgsign true
 git config --global color.ui true
