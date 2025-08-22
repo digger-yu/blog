@@ -35,17 +35,17 @@ curl https://github.com/web-flow.gpg | gpg --import
 
 gpg --edit-key 968479A1AFF927E37D1A566BB5690EEEBB952194
 trust
-5
+4
 yes
 
 ```
 其中有一个是过期的密钥，原因请参考：  
 https://github.blog/news-insights/company-news/rotating-credentials-for-github-com-and-new-ghes-patches/
-# 3. 删除过期的github密钥
+# 3. 删除过期的github密钥，密钥签名
 
 ```
 gpg --delete-keys 5DE3E0509C47EA3CF04A42D34AEE18F83AFDEB23
-
+gpg --sign-key B5690EEEBB952194
 
 [aa@myarch blog]$  gpg --list-keys
 [keyboxd]
