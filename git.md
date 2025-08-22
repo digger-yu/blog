@@ -254,6 +254,18 @@ git push origin main:patch1
 #查看某次提交修改的所有文件
 git show --raw commit_id
 ```
+# git对某个没有签名的commit 进行签名
+```
+    git rebase -i [commit's parent hash]
+    Change pick to edit for the commit you want to amend.
+    Save and exit the editor.
+    Run git commit --amend --gpg-sign --no-edit --signoff
+    git rebase --continue
+---------------------------------------------------------
+
+git rebase --exec 'git commit --amend --no-edit -n -S' -i 25f45cf7cea57ab4aa3b5682cb0772cb21123456
+```
+
 # personal 
 ```dotnetcli
 git config --list
@@ -318,6 +330,7 @@ git config --global https.https://github.com.proxy socks5://127.0.0.1:10808
 #删除
 git config --global --unset url."https://gitclone.com/".insteadOf
 ```
+
 
 
 
