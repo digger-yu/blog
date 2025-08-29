@@ -331,7 +331,25 @@ git config --global https.https://github.com.proxy socks5://127.0.0.1:10808
 git config --global --unset url."https://gitclone.com/".insteadOf
 ```
 
+# ssh: connect to host github.com port 22: Connection timed out
+```
+ssh: connect to host github.com port 22: Connection timed out
+fatal: Could not read from remote repository.
 
+Please make sure you have the correct access rights
+```
+需要通过修改你所生成的rsa所在地址~/.ssh下面的config文件所实现的
+需要在你的config部分加入这一些配置，最主要的是第二行。这里为什么要配置成这个呢，
+是因为github.com并不会自动的转换为ssh.github.com，我们启动的是后者，而不是前者，这会导致time out的产生。
+```
+Host github.com
+HostName ssh.github.com  # 这是最重要的部分
+User git
+Port 443
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/id_rsa
+
+```
 
 
 
