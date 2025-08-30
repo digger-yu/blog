@@ -76,6 +76,7 @@ Port 443
 PreferredAuthentications publickey
 IdentityFile ~/.ssh/id_rsa
 ```
+ssh -T git@github.com -v  # -v参数显示详细过程
 
 # 5. add Personal access tokens
 GitHub 目前支持两种类型的 personal access token：fine-grained personal access token 和 personal access tokens (classic)。   
