@@ -66,6 +66,17 @@ copy your key to ~/.ssh
 ```
 https://github.com/settings/ssh/new
 
+# 4.1 .ssh/config
+vi ~/.ssh/config
+```
+Host github.com
+HostName ssh.github.com 
+User git
+Port 443
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/id_rsa
+```
+
 # 5. add Personal access tokens
 GitHub 目前支持两种类型的 personal access token：fine-grained personal access token 和 personal access tokens (classic)。   
 GitHub 建议尽可能使用 fine-grained personal access token 而不是 personal access tokens (classic)。   
