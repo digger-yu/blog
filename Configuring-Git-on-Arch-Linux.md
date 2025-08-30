@@ -77,7 +77,16 @@ PreferredAuthentications publickey
 IdentityFile ~/.ssh/id_rsa
 GlobalKnownHostsFile ~/.ssh/known_hosts
 ``` 
-
+配置文件可视情况，增加可选压缩模式，加密算法等
+```
+# 使用 OpenSSH 的安全延迟压缩模式
+Compression yes
+CompressionLevel 6  # 可选压缩级别（1-9）
+完整配置示例
+  Compression no                # 完全禁用（避免CRIME攻击）
+  Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com
+  HostKeyAlgorithms ecdsa-sha2-nistp256,ssh-ed25519
+```
 # 4.2 .ssh/known_host
 将以下 ssh 密钥条目添加到 ~/.ssh/known_hosts 文件中，以避免手动验证 GitHub 主机：
 
