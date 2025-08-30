@@ -75,6 +75,7 @@ User git
 Port 443
 PreferredAuthentications publickey
 IdentityFile ~/.ssh/id_rsa
+GlobalKnownHostsFile ~/.ssh/known_hosts
 ``` 
 
 # 4.2 .ssh/known_host
