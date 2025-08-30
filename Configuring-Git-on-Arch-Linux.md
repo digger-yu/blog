@@ -2,7 +2,7 @@
 
 Git默认使用less作为分页器来显示长输出，当找不到less时会报错
 ```
-sudo pacman -S git less
+sudo pacman -S git less jq
 ```
 
 # 1. 配置git config
@@ -79,6 +79,10 @@ IdentityFile ~/.ssh/id_rsa
 ssh -T git@github.com -v  # -v参数显示详细过程
 
 # 4.2 .ssh/known_host
+```
+curl -L https://api.github.com/meta | jq -r '.ssh_keys | .[]' | sed -e 's/^/github.com /' >> ~/.ssh/known_hosts
+```
+
 可以将以下 ssh 密钥条目添加到 ~/.ssh/known_hosts 文件中，以避免手动验证 GitHub 主机：
 ```
 github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl
