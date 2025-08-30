@@ -274,6 +274,7 @@ git config --global user.email digger-yu@outlook.com
 git config --global user.signingkey 93F04D48749C0243
 git config --global alias.tbmain '!git fetch --all && git reset --hard origin/main && git pull origin main'
 git config --global alias.tbmaster '!git fetch --all && git reset --hard origin/master && git pull origin master'
+git config --global alias.debug '!GIT_CURL_VERBOSE=1 GIT_TRACE=1 git'
 
 gpg --list-keys
 gpg --import public-file.key
@@ -350,6 +351,7 @@ PreferredAuthentications publickey
 IdentityFile ~/.ssh/id_rsa
 
 ```
+
 
 
 
