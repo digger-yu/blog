@@ -18,7 +18,7 @@ git config --local commit.gpgsign true
 git config --global color.ui true
 git config --global alias.tbmain '!git fetch --all && git reset --hard origin/main && git pull origin main'
 git config --global alias.tbmaster '!git fetch --all && git reset --hard origin/master && git pull origin master'
-
+git config --global alias.debug '!GIT_CURL_VERBOSE=1 GIT_TRACE=1 git'
 ```
 
 # 2. 导入并信任gpg key
