@@ -75,8 +75,7 @@ User git
 Port 443
 PreferredAuthentications publickey
 IdentityFile ~/.ssh/id_rsa
-```
-ssh -T git@github.com -v  # -v参数显示详细过程
+``` 
 
 # 4.2 .ssh/known_host
 ```
@@ -91,6 +90,10 @@ github.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+V
 ```
 https://docs.github.com/zh/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints
 
+test  -v参数显示详细过程
+```
+ssh -T git@github.com -v
+```
 # 5. add Personal access tokens
 GitHub 目前支持两种类型的 personal access token：fine-grained personal access token 和 personal access tokens (classic)。   
 GitHub 建议尽可能使用 fine-grained personal access token 而不是 personal access tokens (classic)。   
