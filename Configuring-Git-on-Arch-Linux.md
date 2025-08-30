@@ -78,18 +78,37 @@ IdentityFile ~/.ssh/id_rsa
 ``` 
 
 # 4.2 .ssh/known_host
+将以下 ssh 密钥条目添加到 ~/.ssh/known_hosts 文件中，以避免手动验证 GitHub 主机：
+
 ```
 curl -L https://api.github.com/meta | jq -r '.ssh_keys | .[]' | sed -e 's/^/github.com /' >> ~/.ssh/known_hosts
 ```
-
-可以将以下 ssh 密钥条目添加到 ~/.ssh/known_hosts 文件中，以避免手动验证 GitHub 主机：
+无jq方案
 ```
-github.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl
-github.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=
-github.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=
+#可以先用以下命令去重（执行前备份）：
+#sort -u ~/.ssh/known_hosts -o ~/.ssh/known_hosts
+#清理旧的 GitHub 密钥
+#sed -i.bak '/^\(github\.com\|gist\.github\.com\)/d' ~/.ssh/known_hosts
+# 添加新的 GitHub 密钥
+curl -sSL https://api.github.com/meta | \
+  awk '
+    BEGIN {in_ssh=0}
+    /"ssh_keys": \[/{in_ssh=1; next}
+    in_ssh && /\]/{in_ssh=0}
+    in_ssh && /"/ {
+        gsub(/^[[:space:]]+"|",?$/, "")
+        print "github.com", $0
+        print "gist.github.com", $0
+    }
+  ' >> ~/.ssh/known_hosts
 ```
 https://docs.github.com/zh/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints
 
+设置权限
+```
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/known_hosts
+```
 test  -v参数显示详细过程
 ```
 ssh -T git@github.com -v
