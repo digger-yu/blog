@@ -129,35 +129,39 @@ source ~/.bashrc
 gpg --expert --edit-key YOUR_KEY_ID
 gpg> addkey
 Please select what kind of key you want:
-   (14) Existing key from card
-   (13) Existing key
-   (12) ECC (custom)
-   (11) ECC (sign only)
-   (10) ECC (set your own capabilities)
-   (9) RSA (sign only)
-   (8) RSA (set your own capabilities)
-   (7) DSA (set your own capabilities)
+   (3) DSA (sign only)
+   (4) RSA (sign only)
+   (5) Elgamal (encrypt only)
    (6) RSA (encrypt only)
-   (5) RSA (sign only)
-   (4) DSA (sign only)
-Your selection? 9  # 选择 RSA (sign only)
-
-# 设置密钥参数
+   (7) DSA (set your own capabilities)
+   (8) RSA (set your own capabilities)
+  (10) ECC (sign only)
+  (11) ECC (set your own capabilities)
+  (12) ECC (encrypt only)
+  (13) Existing key
+  (14) Existing key from card
+Your selection? 4 # 选择 RSA (sign only)
 RSA keys may be between 1024 and 4096 bits long.
-What keysize do you want? 4096
-Key is valid for? 0  # 0 = 永不过期
+What keysize do you want? (3072) 4096
+Requested keysize is 4096 bits
+Please specify how long the key should be valid.
+         0 = key does not expire
+      <n>  = key expires in n days
+      <n>w = key expires in n weeks
+      <n>m = key expires in n months
+      <n>y = key expires in n years
+Key is valid for? (0) 0  # 0= 永不过期
 Key does not expire at all
 Is this correct? (y/N) y
+Really create? (y/N) y
 
-# 关键：不设置密码！
-Enter passphrase: [直接按回车]
-Repeat passphrase: [直接按回车]
-
+# 获取新子密钥ID
+list
+passwd 子密钥
 gpg> save
 
-配置 Git 使用新密钥
-# 获取新子密钥ID
-gpg --list-secret-keys --keyid-format LONG
+#配置 Git 使用新密钥
+gpg --list-keys --keyid-format LONG
 
 # 设置 Git 使用新子密钥
 git config --global user.signingkey NEW_SUBKEY_ID
