@@ -13,7 +13,7 @@ git config --global user.name "digger yu"
 git config --global user.email digger-yu@outlook.com
 git config --global user.signingkey 93F04D48749C0243
 git config --global log.showSignature true
-git config --global commit.gpgsign ture
+git config --global commit.gpgsign true
 git config --local commit.gpgsign true
 git config --global color.ui true
 git config --global alias.tbmain '!git fetch --all && git reset --hard origin/main && git pull origin main'
@@ -40,29 +40,24 @@ trust
 4
 yes
 
+#验证签名
+echo "test" | gpg --clearsign
 ```
 其中有一个是过期的密钥，原因请参考：  
 https://github.blog/news-insights/company-news/rotating-credentials-for-github-com-and-new-ghes-patches/
-# 3. 删除过期的github密钥，密钥签名
+# 3. 删除过期的github密钥，给github的密钥签名
 
 ```
 gpg --delete-keys 5DE3E0509C47EA3CF04A42D34AEE18F83AFDEB23
 gpg --sign-key B5690EEEBB952194
 
-[aa@myarch blog]$  gpg --list-keys
-[keyboxd]
----------
-pub   rsa2048 2017-08-16 [SC] [expired: 2024-01-16]
-      5DE3E0509C47EA3CF04A42D34AEE18F83AFDEB23
-uid           [ expired] GitHub (web-flow commit signing) <noreply@github.com>
-
-
+gpg --list-keys
 ```
 # 4. add ssh-key
 ```
-copy your key to ~/.ssh     
+copy your public and private key to ~/.ssh     
 如果没有则用命令ssh-keygen 创建   
-将公钥复制到   
+将公钥复制到.ssh   
 ```
 https://github.com/settings/ssh/new
 
@@ -123,7 +118,51 @@ test  -v参数显示详细过程
 ```
 ssh -T git@github.com -v
 ```
-# 5. add Personal access tokens
+# 4.3 .bashrc
+导入gpg密钥之后，如果在ssh命令行操作git，需要输入密码，默认是弹出图形界面对话框
+```
+echo 'export GPG_TTY=$(tty)' >> ~/.bashrc
+source ~/.bashrc
+```
+# 4.4 可选采用无密码的子密钥方案
+```
+gpg --expert --edit-key YOUR_KEY_ID
+gpg> addkey
+Please select what kind of key you want:
+   (14) Existing key from card
+   (13) Existing key
+   (12) ECC (custom)
+   (11) ECC (sign only)
+   (10) ECC (set your own capabilities)
+   (9) RSA (sign only)
+   (8) RSA (set your own capabilities)
+   (7) DSA (set your own capabilities)
+   (6) RSA (encrypt only)
+   (5) RSA (sign only)
+   (4) DSA (sign only)
+Your selection? 9  # 选择 RSA (sign only)
+
+# 设置密钥参数
+RSA keys may be between 1024 and 4096 bits long.
+What keysize do you want? 4096
+Key is valid for? 0  # 0 = 永不过期
+Key does not expire at all
+Is this correct? (y/N) y
+
+# 关键：不设置密码！
+Enter passphrase: [直接按回车]
+Repeat passphrase: [直接按回车]
+
+gpg> save
+
+配置 Git 使用新密钥
+# 获取新子密钥ID
+gpg --list-secret-keys --keyid-format LONG
+
+# 设置 Git 使用新子密钥
+git config --global user.signingkey NEW_SUBKEY_ID
+```
+# 5. 可选添加 Personal access tokens
 GitHub 目前支持两种类型的 personal access token：fine-grained personal access token 和 personal access tokens (classic)。   
 GitHub 建议尽可能使用 fine-grained personal access token 而不是 personal access tokens (classic)。   
 注意    
