@@ -351,8 +351,9 @@ PreferredAuthentications publickey
 IdentityFile ~/.ssh/id_rsa
 
 ```
-
-
+# gh config
+gh config list
+gh config set -h github.com git_protocol ssh
 
 
 
