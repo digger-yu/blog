@@ -356,6 +356,30 @@ IdentityFile ~/.ssh/id_rsa
 gh config list
 gh config set -h github.com git_protocol ssh
 
+# 清除 Git 提交历史，但保留最新文件
+```
+# 1. 确保在你的工作分支（比如 main），且工作区是干净的
+git status
+# 如果有未提交的改动了，先 git add . && git commit -m "save before reset"
+
+# 2. 创建 orphan 分支（无历史的根分支）
+git checkout --orphan temp-clean
+
+# 3. 添加所有当前文件（最新状态）到暂存区
+git add -A
+
+# 4. 做第一个全新提交
+git commit -m "Initial commit (history cleaned)"
+
+# 5. 删掉原来的 main 分支
+git branch -D main
+
+# 6. 把 temp-clean 重命名为 main
+git branch -m main
+
+# 7. 强制推送覆盖远程（⚠️ 远程历史也会被清掉）
+git push -f origin main
+```
 
 
 
