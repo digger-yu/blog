@@ -43,7 +43,7 @@ git branch
 
 ```dotnetcli
 #git 列出所有作者并去重
-git log --pretty=format:"%an" main | sort -u
+git log --all --no-show-signature --format='%ae' | grep -v 'noreply.github.com' | sort -u
 
 #git 列出所有作者邮箱并去重#main是分支
 git log --pretty=format:"%ae" main | sort -u
