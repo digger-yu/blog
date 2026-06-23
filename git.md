@@ -276,7 +276,7 @@ git config --global alias.tbmain '!git fetch --all && git reset --hard origin/ma
 git config --global alias.tbmaster '!git fetch --all && git reset --hard origin/master && git pull origin master'
 git config --global alias.debug '!GIT_CURL_VERBOSE=1 GIT_TRACE=1 git'
 git config --global init.defaultBranch main
-
+git config --global commit.signoff true
 gpg --list-keys
 gpg --import public-file.key
 gpg --import private-file.key
