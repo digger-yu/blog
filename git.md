@@ -253,6 +253,8 @@ git push origin main:patch1
 
 #查看某次提交修改的所有文件
 git show --raw commit_id
+git log -1 --pretty=fuller
+
 ```
 # git对某个没有签名的commit 进行签名
 ```
