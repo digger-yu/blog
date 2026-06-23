@@ -14,7 +14,8 @@ git config --global user.email digger-yu@outlook.com
 git config --global user.signingkey 93F04D48749C0243
 git config --global log.showSignature true
 git config --global commit.gpgsign true
-git config --local commit.gpgsign true
+git config --global commit.signoff true
+
 git config --global color.ui true
 git config --global alias.tbmain '!git fetch --all && git reset --hard origin/main && git pull origin main'
 git config --global alias.tbmaster '!git fetch --all && git reset --hard origin/master && git pull origin master'
