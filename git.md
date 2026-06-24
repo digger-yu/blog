@@ -39,6 +39,56 @@ git checkout aaa
 git branch   
 ```
 
+# git 你的 PR 不是基于上游最新主干开的，需要先追平再合
+```
+假设你的修改在分支 feature-a，上游远程叫 upstream，目标分支是 main（也可能是 master/dev，按实际来）。
+bash
+# 1. 切回你的功能分支
+git checkout feature-a
+
+# 2. 拉取上游最新代码
+git fetch upstream
+
+# 3. 把你的 a 修改"挪"到上游最新头上
+git rebase upstream/main
+# 如果有冲突，解决后 git add . && git rebase --continue
+
+# 4. 强推更新 PR（PR 会自动跟着变）
+git push --force-with-lease origin feature-a
+用 --force-with-lease而不是 --force，更安全，能防止你覆盖掉自己或别人意外推到同分支的提交
+```
+
+#  设置 Upstream 仓库
+```
+设置 Upstream 仓库
+首先，确保你已经克隆了自己的 Fork 仓库到本地。然后，使用以下命令添加 upstream 仓库：
+
+git remote add upstream https://github.com/原始仓库用户/原始仓库名.git
+可以通过以下命令验证 upstream 是否添加成功：
+
+git remote -v
+从 Upstream 获取更新
+
+为了同步原始仓库的最新代码，可以使用以下命令从 upstream 拉取更新：
+
+git fetch upstream
+此命令会将 upstream 仓库的更新下载到本地，但不会自动合并到当前分支。
+
+合并 Upstream 的代码
+将 upstream 的更新合并到当前分支，可以使用以下命令：
+
+git merge upstream/main
+这里假设原始仓库的主分支名称为 main，你可以根据实际情况替换为其他分支名称。
+
+推送代码到 Upstream
+如果你有权限向原始仓库提交代码，可以使用以下命令将本地修改推送到 upstream 仓库：
+
+git push upstream main
+通常情况下，贡献代码的最佳实践是通过创建 Pull Request 来提交更改，而不是直接推送到 upstream。
+
+注意事项
+origin 通常指代你 Fork 后的个人远程仓库，而 upstream 指代原始项目的远程仓库。
+```
 # git 列出所有作者
 
 ```dotnetcli
