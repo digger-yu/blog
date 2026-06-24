@@ -29,3 +29,14 @@ done
 
 echo "✅ Done! 刷新：https://github.com/digger-yu/xxxx/actions"
 ```
+
+#4
+```
+# 删全部（前 200 条，不够就再跑一次）
+gh run list --limit 200 --json databaseId --jq '.[].databaseId' \
+  | xargs -I{} gh run delete {}
+
+# 只删 failed 的
+gh run list --status failure --limit 200 --json databaseId --jq '.[].databaseId' \
+  | xargs -I{} gh run delete {}
+```
