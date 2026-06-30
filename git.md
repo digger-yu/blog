@@ -308,6 +308,12 @@ git show --stat <commit-hash>
 git commit --allow-empty -s -m "test: verify DCO signoff with -s"
 git log -1 --pretty=fuller
 
+# 1. 暂存新的修改（README、技术报告等）
+git add -A
+# 2. 将修改追加到上一个 commit（不产生新 commit）
+git commit --amend --no-edit
+# 3. 强制推送到远程分支（更新 PR）
+git push origin feat/windows
 ```
 # git对某个没有签名的commit 进行签名
 ```
