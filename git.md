@@ -313,7 +313,7 @@ git add -A
 # 2. 将修改追加到上一个 commit（不产生新 commit）
 git commit --amend --no-edit
 # 3. 强制推送到远程分支（更新 PR）
-git push origin feat/windows
+git push origin feat/windows --force
 ```
 # git对某个没有签名的commit 进行签名
 ```
