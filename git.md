@@ -313,7 +313,14 @@ git add -A
 # 2. 将修改追加到上一个 commit（不产生新 commit）
 git commit --amend --no-edit
 # 3. 强制推送到远程分支（更新 PR）
-git push origin feat/windows --force
+git push origin main:feat/windows --force
+
+git push origin feat/windows 
+git push <远程仓库名> <本地分支名>:<远程分支名>
+各部分含义
+origin：远程仓库的别名（通常是默认的远程仓库名称）。
+main：你本地的源分支名，表示要推送的内容来自本地的 main分支。
+feat/windows：这是你指定的远程分支名（位于冒号右侧）。它表示你想把本地 main分支上的提交，推送到远程仓库 origin上的一个名为 feat/windows的分支。
 ```
 # git对某个没有签名的commit 进行签名
 ```
