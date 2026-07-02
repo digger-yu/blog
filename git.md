@@ -449,6 +449,20 @@ git branch -m main
 git push -f origin main
 ```
 
+# 三种合并方式对比：Squash Merge vs Merge  vs Rebase Merge
+
+
+| 对比维度 | Create a merge commit (默认) | Squash and merge | Rebase and merge |
+|---|---|---|---|
+| **产出 commit 数量** | N 条原 commit + 1 条 merge = N+1 条 | **1 条**（全部压成一个） | **N 条**（保留原数量） |
+| **是否产生 merge commit** | ✅ 是 | ❌ 否 | ❌ 否 |
+| **历史形态** | 非线性（有树杈） | 完全线性 | 完全线性 |
+| **Commit Hash 变化** | 原 commit hash 不变，仅新增 merge commit | 全部作废，生成全新 commit | 全部作废，每条重新生成 |
+| **原作者 (Author)** | ✅ 完全不变 | 取 PR 最后一条 commit 的作者（多人协作时其余人写入 `Co-authored-by`） | ✅ 逐条保留，完全不变 |
+| **提交者 (Committer)** | 变为执行合并的人/系统 | 变为执行合并的人/系统 | 变为执行合并的人/系统 |
+| **Commit Message** | 保留所有原 message + 新增 merge message | 可在 UI 中重新编辑为一条统一 message | 保留原 PR 中每条 commit 的 message |
+
+---
 
 
 
