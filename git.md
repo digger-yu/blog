@@ -345,6 +345,7 @@ git config --global alias.tbmaster '!git fetch --all && git reset --hard origin/
 git config --global alias.debug '!GIT_CURL_VERBOSE=1 GIT_TRACE=1 git'
 git config --global init.defaultBranch main
 git config --global commit.signoff true
+git config --global alias.lg "log --oneline --graph --decorate --all"
 gpg --list-keys
 gpg --import public-file.key
 gpg --import private-file.key
