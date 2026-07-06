@@ -322,6 +322,20 @@ origin：远程仓库的别名（通常是默认的远程仓库名称）。
 main：你本地的源分支名，表示要推送的内容来自本地的 main分支。
 feat/windows：这是你指定的远程分支名（位于冒号右侧）。它表示你想把本地 main分支上的提交，推送到远程仓库 origin上的一个名为 feat/windows的分支。
 ```
+# This branch is 1 commit ahead of and 2 commits behind 
+```
+说明 master 上有 2 个新提交还没合入你的分支。需要先 rebase 到最新的 master 上：
+# 拉取上游最新代码
+git fetch upstream
+
+# 将你的分支变基到最新 master
+git rebase upstream/master
+
+# 如果有冲突，解决后 git rebase --continue
+
+# 推送更新
+git push origin feat/windows-support:feat/windows-support --force-with-lease
+```
 # git对某个没有签名的commit 进行签名
 ```
     git rebase -i [commit's parent hash]
