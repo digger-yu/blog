@@ -1,11 +1,244 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Digger Blog</title>
-  </head>
-  <body>
-    <h1>Digger Blog</h1>
-    
-    <a href="https://github.com/digger-yu/blog/blob/main/how%20to%20install%20dperf%20on%20ubuntu.md">how to install dperf on ubuntu</a>
-  </body>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digger Blog</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                   "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue",
+                   Helvetica, Arial, sans-serif;
+      background: #f6f8fa;
+      color: #24292f;
+      line-height: 1.6;
+    }
+    .container { max-width: 820px; margin: 0 auto; padding: 40px 20px 60px; }
+    header { text-align: center; margin-bottom: 48px; }
+    header h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    header h1 a { color: #24292f; text-decoration: none; }
+    header .subtitle { color: #57606a; margin-top: 8px; font-size: 0.95rem; }
+    header .links { margin-top: 16px; }
+    header .links a {
+      color: #0969da;
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin: 0 8px;
+    }
+    header .links a:hover { text-decoration: underline; }
+    .category { margin-bottom: 40px; }
+    .category h2 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #24292f;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #d0d7de;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .category h2 .icon { font-size: 1.1rem; }
+    .post-list { list-style: none; }
+    .post-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid #eaeef2;
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .post-list li:last-child { border-bottom: none; }
+    .post-list a {
+      color: #0969da;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+    .post-list a:hover { text-decoration: underline; }
+    .post-list .desc {
+      color: #6e7781;
+      font-size: 0.82rem;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 1px 7px;
+      border-radius: 10px;
+      background: #ddf4ff;
+      color: #0969da;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      color: #8b949e;
+      font-size: 0.8rem;
+    }
+    footer a { color: #0969da; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><a href="https://digger-yu.github.io/blog/">Digger Blog</a></h1>
+      <p class="subtitle">技术笔记 &middot; Linux / 网络 / 开发工具</p>
+      <div class="links">
+        <a href="https://github.com/digger-yu/blog">GitHub 仓库</a>
+      </div>
+    </header>
+
+    <!-- Git 与 GPG -->
+    <section class="category">
+      <h2><span class="icon">🔀</span> Git 与 GPG</h2>
+      <ul class="post-list">
+        <li>
+          <span class="tag">速查表</span>
+          <a href="https://digger-yu.github.io/blog/git-config-cheatsheet.html">Git Config 命令速查表</a>
+          <span class="desc">— 在线速查表（HTML）</span>
+        </li>
+        <li>
+          <span class="tag">笔记</span>
+          <a href="https://github.com/digger-yu/blog/blob/main/git.md">Git 笔记</a>
+          <span class="desc">— Git 常用操作整理</span>
+        </li>
+        <li>
+          <span class="tag">Arch</span>
+          <a href="https://github.com/digger-yu/blog/blob/main/Configuring-Git-on-Arch-Linux.md">Configuring Git on Arch Linux</a>
+          <span class="desc">— Arch Linux 下配置 Git</span>
+        </li>
+        <li>
+          <span class="tag">GPG</span>
+          <a href="https://github.com/digger-yu/blog/blob/main/GPG.md">GPG</a>
+          <span class="desc">— GPG 密钥生成与使用</span>
+        </li>
+        <li>
+          <span class="tag">GitHub</span>
+          <a href="https://github.com/digger-yu/blog/blob/main/how-to-delete-github-actions-history-log.md">How to delete GitHub Actions history log</a>
+          <span class="desc">— 删除 GitHub Actions 历史日志</span>
+        </li>
+        <li>
+          <span class="tag">Profile</span>
+          <a href="https://github.com/digger-yu/blog/blob/main/Bio-section-under-profile.md">Bio section under profile</a>
+          <span class="desc">— GitHub Profile Bio 设置</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- GCC 编译器 -->
+    <section class="category">
+      <h2><span class="icon">⚙️</span> GCC 编译器</h2>
+      <ul class="post-list">
+        <li>
+          <span class="tag">CentOS</span>
+          <a href="https://github.com/digger-yu/blog/blob/main/A-simple-and-quickly-way-to-upgrade-gcc15.1.0-on-CentOS7.9.md">A simple and quickly way to upgrade gcc15.1.0 on CentOS7.9</a>
+          <span class="desc">— 快速升级 GCC 15.1.0</span>
+        </li>
+        <li>
+          <span class="tag">源码编译</span>
+          <a href="https://github.com/digger-yu/blog/blob/main/Upgrading-gcc4.8.5-to-gcc15.1.0-on-CentOS7.9.md">Upgrading gcc4.8.5 to gcc15.1.0 on CentOS 7.9</a>
+          <span class="desc">— 源码包升级 4.8.5 → 15.1.0</span>
+        </li>
+        <li>
+          <span class="tag">devtoolset</span>
+          <a href="https://github.com/digger-yu/blog/blob/main/how-to-install-gcc11-on-centos7.9.md">How to install gcc11 on CentOS7.9</a>
+          <span class="desc">— 通过 devtoolset 安装 GCC 11</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Linux 系统安装与配置 -->
+    <section class="category">
+      <h2><span class="icon">🐧</span> Linux 系统安装与配置</h2>
+      <ul class="post-list">
+        <li>
+          <span class="tag">Arch</span>
+          <a href="https://github.com/digger-yu/blog/blob/main/how-to-install-arch-linux.md">How to install arch linux</a>
+          <span class="desc">— Arch Linux 安装指南</span>
+        </li>
+        <li>
+          <span class="tag">BIOS/UEFI</span>
+          <a href="https://github.com/digger-yu/blog/blob/main/Install-archlinux-in-legacy-and-UEFI-BIOS-modes.md">Install archlinux in legacy and UEFI BIOS modes</a>
+          <span class="desc">— 传统 BIOS 与 UEFI 双模式安装</span>
+        </li>
+        <li>
+          <span class="tag">PXE</span>
+          <a href="https://github.com/digger-yu/blog/blob/main/how-to-configure-pxe-on-centos.md">How to configure PXE on CentOS</a>
+          <span class="desc">— PXE 网络启动配置</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 桌面环境 -->
+    <section class="category">
+      <h2><span class="icon">🖥️</span> 桌面环境</h2>
+      <ul class="post-list">
+        <li>
+          <span class="tag">dwm</span>
+          <a href="https://github.com/digger-yu/blog/blob/main/how-to-configure-dwm.md">How to configure dwm</a>
+          <span class="desc">— DWM 窗口管理器配置</span>
+        </li>
+        <li>
+          <span class="tag">源码编译</span>
+          <a href="https://github.com/digger-yu/blog/blob/main/how-to-build-xfce-4.18-source-code.md">How to build XFCE 4.18 source code</a>
+          <span class="desc">— 源码编译 XFCE 4.18</span>
+        </li>
+        <li>
+          <span class="tag">源码编译</span>
+          <a href="https://github.com/digger-yu/blog/blob/main/how-to-build-lxqt-1.3.0-source-code.md">How to build LXQt 1.3.0 source code</a>
+          <span class="desc">— 源码编译 LXQt 1.3.0</span>
+        </li>
+        <li>
+          <span class="tag">PPA</span>
+          <a href="https://github.com/digger-yu/blog/blob/main/install-xfce-lxqt-with-ppa-source.md">Install XFCE / LXQt with PPA source</a>
+          <span class="desc">— 通过 PPA 源安装</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 网络与测试工具 -->
+    <section class="category">
+      <h2><span class="icon">🌐</span> 网络与测试工具</h2>
+      <ul class="post-list">
+        <li>
+          <span class="tag">dperf</span>
+          <a href="https://github.com/digger-yu/blog/blob/main/how-to-install-dperf-on-ubuntu.md">How to install dperf on Ubuntu</a>
+          <span class="desc">— Ubuntu 安装 dperf 压测工具</span>
+        </li>
+        <li>
+          <span class="tag">协议</span>
+          <a href="https://github.com/digger-yu/blog/blob/main/IEEE-EtherType.md">IEEE EtherType Registry</a>
+          <span class="desc">— IEEE 802 EtherType 协议注册表</span>
+        </li>
+        <li>
+          <span class="tag">工具</span>
+          <a href="https://github.com/digger-yu/blog/blob/main/Switchhost.md">SwitchHosts</a>
+          <span class="desc">— SwitchHosts hosts 源配置</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 其他 -->
+    <section class="category">
+      <h2><span class="icon">📦</span> 其他</h2>
+      <ul class="post-list">
+        <li>
+          <span class="tag">路由测试</span>
+          <a href="https://github.com/digger-yu/blog/blob/main/how-to-build-route-test-plat.md">How to build route test platform</a>
+          <span class="desc">— 搭建路由测试平台</span>
+        </li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>&copy; Digger &middot; <a href="https://github.com/digger-yu">GitHub</a> &middot; Powered by GitHub Pages</p>
+    </footer>
+  </div>
+</body>
 </html>
