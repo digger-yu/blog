@@ -1,11 +1,25 @@
+[在线命令速查表](https://digger-yu.github.io/blog/git-config-cheatsheet.html)
+
+[官方手册](https://git-scm.com/docs/git-config)
+
+
 # personal 
 ```dotnetcli
-git config --list
+优先级 local > global > system
+system 先读 → 基础值
+global 再读 → 覆盖 system
+local 最后读 → 覆盖 global  local是指当前 Git 仓库
+
+git config --list --show-origin
 git config --global user.name "digger yu"
 git config --global user.email digger-yu@outlook.com
 git config --global user.signingkey 93F04D48749C0243
 git config --global commit.signoff true
-git config --global commit.gpgsign=true
+git config --global commit.gpgsign true
+git config --global log.showsignature true
+git config --global log.abbrevcommit true
+git config --global log.date iso
+git config --global log.decorate short
 git config --global core.autocrlf true
 git config --global init.defaultBranch main
 git config --global alias.tbmain '!git fetch && git rebase origin/main'
@@ -17,6 +31,9 @@ git config --global alias.vfetch '!f() { GIT_TRACE=1 git fetch "$@"; }; f'
 git config --global push.default simple
 git config --global pull.rebase true
 git config --global fetch.prune true
+
+
+git config --global --unset <key>
 
 gpg --list-keys
 gpg --import public-file.key
