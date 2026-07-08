@@ -1,14 +1,120 @@
-# git config 
+# personal 
 ```dotnetcli
-git config --list 
-git config --global user.name
-git config --global user.email
+git config --list
+git config --global user.name "digger yu"
+git config --global user.email digger-yu@outlook.com
+git config --global user.signingkey 93F04D48749C0243
+git config --global commit.signoff true
+git config --global commit.gpgsign=true
+git config --global core.autocrlf true
+git config --global init.defaultBranch main
+git config --global alias.tbmain '!git fetch --all && git reset --hard origin/main && git pull origin main'
+git config --global alias.tbmaster '!git fetch --all && git reset --hard origin/master && git pull origin master'
+git config --global alias.debug '!GIT_CURL_VERBOSE=1 GIT_TRACE=1 git'
+git config --global alias.lg "log --oneline --graph --decorate --all"
+git config --global alias.cloneall 'clone --recurse-submodules'
+git config --global alias.debug '!f() { GIT_CURL_VERBOSE=1 GIT_TRACE=1 git "$@"; }; f'
 
-______________________________
-git调试模式
- GIT_CURL_VERBOSE=1 GIT_TRACE=1 git clone https://github.com/xxx.git
-problem :== Info: Couldn't find host github.com in the .netrc file; using defaults
 
+gpg --list-keys
+gpg --import public-file.key
+gpg --import private-file.key
+导出
+#gpg -a -o public.key --export 93F04D48749C0243
+#gpg -a -o private.key --export-secret-keys 93F04D48749C0243
+
+gpg --edit-key 93F04D48749C0243
+trust
+5
+yes
+curl https://github.com/web-flow.gpg | gpg --import
+删除
+gpg --delete-keys 4AEE18F83AFDEB23
+gpg --sign-key B5690EEEBB952194
+
+pip升级及更改源
+python -m pip install --upgrade pip
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
+如果用ssh的方式git clone出现需要输入密码
+Enter passphrase for key '/c/Users/digger/.ssh/id_rsa':
+可以将密码设置为空,以源密码为123456举例,之后就不需要输入密码了
+$ ssh-keygen -p -P 123456 -N '' -f id_rsa
+ssh-keygen -p [-P old_passphrase][-N new_passphrase] [-f keyfile]
+```
+
+# git diff
+```dotnetcli
+git diff --color-words
+grep -rn "enable" ./* --colour=auto
+git commit -S -am "fix typo"
+git push origin main:patch1
+
+#查看某次提交修改的所有文件
+git show --raw commit_id
+git show --stat <commit-hash>
+git commit --allow-empty -s -m "test: verify DCO signoff with -s"
+git log -1 --pretty=fuller
+
+# 1. 暂存新的修改（README、技术报告等）
+git add -A
+# 2. 将修改追加到上一个 commit（不产生新 commit）
+git commit --amend --no-edit
+# 3. 强制推送到远程分支（更新 PR）
+git push origin main:feat/windows --force
+git push origin feat/windows 
+git push <远程仓库名> <本地分支名>:<远程分支名>
+各部分含义
+origin：远程仓库的别名（通常是默认的远程仓库名称）。
+main：你本地的源分支名，表示要推送的内容来自本地的 main分支。
+feat/windows：这是你指定的远程分支名（位于冒号右侧）。它表示你想把本地 main分支上的提交，推送到远程仓库 origin上的一个名为 feat/windows的分支。
+```
+
+# git clone
+```
+#clone 用https还是ssh
+# 全局配置：所有 github.com 的 https 自动换成 git@
+git config --global url."git@github.com:".insteadOf "https://github.com/"
+
+# 仅对子模块生效
+git config --global submodule."https://github.com/".url "git@github.com:"
+
+# Git中只克隆一个特定分支
+git clone -b main --single-branch <repository URL>
+#main 分支名
+```
+
+
+# git 调试模式
+```
+GIT_CURL_VERBOSE=1 GIT_TRACE=1 git clone https://github.com/xxx.git
+
+git config --global alias.debug '!f() { GIT_CURL_VERBOSE=1 GIT_TRACE=1 git "$@"; }; f'
+
+Example:
+da@da:~$ git debug clone https://github.com/digger-yu/dperf
+08:50:16.701958 git.c:455               trace: built-in: git clone https://github.com/digger-yu/dperf
+Cloning into 'dperf'...
+08:50:16.705971 run-command.c:668       trace: run_command: git remote-https origin https://github.com/digger-yu/dperf
+08:50:16.707276 git.c:742               trace: exec: git-remote-https origin https://github.com/digger-yu/dperf
+08:50:16.707325 run-command.c:668       trace: run_command: git-remote-https origin https://github.com/digger-yu/dperf
+08:50:16.712560 http.c:664              == Info: Couldn't find host github.com in the (nil) file; using defaults
+08:50:16.926659 http.c:664              == Info:   Trying 20.205.243.166:443...
+08:50:17.037725 http.c:664              == Info: Connected to github.com (20.205.243.166) port 443 (#0)
+08:50:17.061708 http.c:664              == Info: found 365 certificates in /etc/ssl/certs
+08:50:17.061985 http.c:664              == Info: GnuTLS ciphers: NORMAL:-ARCFOUR-128:-CTYPE-ALL:+CTYPE-X509:-VERS-SSL3.0
+08:50:17.062034 http.c:664              == Info: ALPN, offering h2
+08:50:17.062041 http.c:664              == Info: ALPN, offering http/1.1
+08:50:17.177390 http.c:664              == Info: SSL connection using TLS1.3 / ECDHE_RSA_AES_128_GCM_SHA256
+08:50:17.179030 http.c:664              == Info:   server certificate verification OK
+08:50:17.179045 http.c:664              == Info:   server certificate status verification SKIPPED
+08:50:17.179130 http.c:664              == Info:   common name: github.com (matched)
+08:50:17.179136 http.c:664              == Info:   server certificate expiration date OK
+08:50:17.179139 http.c:664              == Info:   server certificate activation date OK
+
+```
+# 创建Personal Access Token
+```
 vi ~/.gitconfig
 [credential]
     helper = store
@@ -17,10 +123,10 @@ vi ~/.netrc
 machine github.com
     login your-user-name
     password your-personal-access-token
+```
+```
 登录GitHub：在浏览器中打开GitHub，然后登录您的账户。
-
 创建Personal Access Token：
-
 在页面右上角，点击您的头像，然后点击Settings（设置）。
 在左侧边栏中，点击Developer settings（开发人员设置）。
 在左侧边栏中，找到并单击Personal access tokens（个人访问令牌）。
@@ -104,13 +210,7 @@ git shortlog -sn --all
 查看所有作者
 git log | grep Author: | sort | uniq
 ```
-# Git中只克隆一个特定分支
 
-```dotnetcli
-git clone -b main --single-branch <repository URL>
-
-#main 分支名
-```
 
 # 批量删除远程不活跃的分支
 
@@ -140,7 +240,7 @@ git pull --force  <远程主机名> <远程分支名>:<本地分支名>
 git pull --force origin master:master
 
 方法二
-$     git fetch --all
+$ git fetch --all
 $ git reset --hard origin/main
 $ git pull origin main
 
@@ -170,70 +270,9 @@ git reset --hard HEAD^
 回退到任意版本git reset --hard commitid，使用git log命令查看git提交历史和commitid
 ```
 
-# 清除 git 所有历史提交记录方案
-```dotnetcli
-1.创建新分支
-语法：git checkout --orphan <new_branch>
-2.添加所有文件
-git add .
-3.commit代码
-git commit -m "自定义提交说明"
-4.删除原来的主分支(master)
-git branch -D master
-5.把当前分支重命名为master
-git branch -m master
-6.最后把代码推送到远程仓库
-git push -f origin master
-注意： 有些仓库有 master 分支保护，不允许强制 push，需要在远程仓库项目里暂时把项目保护关掉才能推送。
-推送前 需要使用 git remote -v 查看关联的远程仓库的信息（主要是远程库的别名）。虽然远程库的别名默认是 origin ,但你可能设置过其他的别名（而非 origin）.
-推送前，有的情况需要设置：git branch --set-upstream-to=origin/master master
-7.从远程库拉取更新代码(测试)
-git pull
-8.确定清除历史记录的结果
-git log --pretty=oneline
-# 列出所有本地分支
-git branch
-# 列出所有远程分支
-git branch -r
-# 列出所有本地分支和远程分支
-git branch -a
-# 查看 tag 信息
-# 查看本地标签
-git tag
-# 查看远程标签
-git ls-remote --tags
 
-9. 可登录远程仓库再次确认。
-```
 
-# 删除全部历史记录
-```dotnetcli
-把旧项目提交到git上，但是会有一些历史记录，这些历史记录中可能会有项目密码等敏感信息。
-如何删除这些历史记录，形成一个全新的仓库，并且保持代码不变呢？
 
-1.Checkout
-   git checkout --orphan latest_branch
-2. Add all the files
-   git add -A
-3. Commit the changes
-   git commit -am "commit message"
-4. Delete the branch
-   git branch -D master
-5.Rename the current branch to master
-   git branch -m master
-6.Finally, force update your repository
-   git push -f origin master
-```
-
-# git 切换远程分支
-```dotnetcli
-$ git remote set-url origin https://github.com/digger-yu/trex-core.git
-$ git remote set-url origin https://github.com/cisco-system-traffic-generator/trex-core.git
-
-digger@Digger-Desktop MINGW64 /d/git/trex-core (master)
-$ git remote -v
-
-```
 
 # gitignore不生效
 ```dotnetcli
@@ -258,7 +297,12 @@ git push origin 5549f79:main --force  从本地分支强制推送到远程分支
 git push origin main:main --force  从本地分支强制推送到远程分支
 git push REMOTE-NAME LOCAL-BRANCH-NAME:REMOTE-BRANCH-NAME
 ```
-
+# git 切换远程分支
+```dotnetcli
+$ git remote set-url origin https://github.com/digger-yu/trex-core.git
+$ git remote set-url origin https://github.com/cisco-system-traffic-generator/trex-core.git
+$ git remote -v
+```
 # 添加/移除一个远程库
 ```dotnetcli
 ##添加一个远程库
@@ -287,41 +331,8 @@ git config --global core.preloadindex true
 git config --global core.fscache true
 git config --global gc.auto 256
 ```
-# git 添加证书信任
-```dotnetcli
-git config user.signingKey 749C0243
-git config commit.gpgSign true
-``````
-# git diff
 
-```dotnetcli
-git diff --color-words
 
-grep -rn "enable" ./* --colour=auto
-git commit -S -am "fix typo"
-git push origin main:patch1
-
-#查看某次提交修改的所有文件
-git show --raw commit_id
-git show --stat <commit-hash>
-
-git commit --allow-empty -s -m "test: verify DCO signoff with -s"
-git log -1 --pretty=fuller
-
-# 1. 暂存新的修改（README、技术报告等）
-git add -A
-# 2. 将修改追加到上一个 commit（不产生新 commit）
-git commit --amend --no-edit
-# 3. 强制推送到远程分支（更新 PR）
-git push origin main:feat/windows --force
-
-git push origin feat/windows 
-git push <远程仓库名> <本地分支名>:<远程分支名>
-各部分含义
-origin：远程仓库的别名（通常是默认的远程仓库名称）。
-main：你本地的源分支名，表示要推送的内容来自本地的 main分支。
-feat/windows：这是你指定的远程分支名（位于冒号右侧）。它表示你想把本地 main分支上的提交，推送到远程仓库 origin上的一个名为 feat/windows的分支。
-```
 # This branch is 1 commit ahead of and 2 commits behind 
 ```
 说明 master 上有 2 个新提交还没合入你的分支。需要先 rebase 到最新的 master 上：
@@ -348,50 +359,7 @@ git push origin feat/windows-support:feat/windows-support --force-with-lease
 git rebase --exec 'git commit --amend --no-edit -n -S' -i 25f45cf7cea57ab4aa3b5682cb0772cb21123456
 ```
 
-# personal 
-```dotnetcli
-git config --list
-git config --global user.name "digger yu"
-git config --global user.email digger-yu@outlook.com
-git config --global user.signingkey 93F04D48749C0243
-git config --global core.autocrlf true
-git config --global alias.tbmain '!git fetch --all && git reset --hard origin/main && git pull origin main'
-git config --global alias.tbmaster '!git fetch --all && git reset --hard origin/master && git pull origin master'
-git config --global alias.debug '!GIT_CURL_VERBOSE=1 GIT_TRACE=1 git'
-git config --global alias.lg "log --oneline --graph --decorate --all"
-git config --global alias.cloneall 'clone --recurse-submodules'
-git config --global init.defaultBranch main
-git config --global commit.signoff true
-git config --global commit.gpgsign=true
 
-gpg --list-keys
-gpg --import public-file.key
-gpg --import private-file.key
-导出
-#gpg -a -o public.key --export 93F04D48749C0243
-#gpg -a -o private.key --export-secret-keys 93F04D48749C0243
-
-gpg --edit-key 93F04D48749C0243
-trust
-5
-yes
-curl https://github.com/web-flow.gpg | gpg --import
-删除
-gpg --delete-keys 4AEE18F83AFDEB23
-gpg --sign-key B5690EEEBB952194
-
-pip升级及更改源
-python -m pip install --upgrade pip
-pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
-
-如果用ssh的方式git clone出现需要输入密码
-Enter passphrase for key '/c/Users/digger/.ssh/id_rsa':
-可以将密码设置为空,以源密码为123456举例,之后就不需要输入密码了
-$ ssh-keygen -p -P 123456 -N '' -f id_rsa
-ssh-keygen -p [-P old_passphrase][-N new_passphrase] [-f keyfile]
-
-
-```
 # git 设置代理
 
 ```
@@ -466,6 +434,60 @@ git branch -m main
 
 # 7. 强制推送覆盖远程（⚠️ 远程历史也会被清掉）
 git push -f origin main
+```
+# 清除 git 所有历史提交记录方案
+```dotnetcli
+1.创建新分支
+语法：git checkout --orphan <new_branch>
+2.添加所有文件
+git add .
+3.commit代码
+git commit -m "自定义提交说明"
+4.删除原来的主分支(master)
+git branch -D master
+5.把当前分支重命名为master
+git branch -m master
+6.最后把代码推送到远程仓库
+git push -f origin master
+注意： 有些仓库有 master 分支保护，不允许强制 push，需要在远程仓库项目里暂时把项目保护关掉才能推送。
+推送前 需要使用 git remote -v 查看关联的远程仓库的信息（主要是远程库的别名）。虽然远程库的别名默认是 origin ,但你可能设置过其他的别名（而非 origin）.
+推送前，有的情况需要设置：git branch --set-upstream-to=origin/master master
+7.从远程库拉取更新代码(测试)
+git pull
+8.确定清除历史记录的结果
+git log --pretty=oneline
+# 列出所有本地分支
+git branch
+# 列出所有远程分支
+git branch -r
+# 列出所有本地分支和远程分支
+git branch -a
+# 查看 tag 信息
+# 查看本地标签
+git tag
+# 查看远程标签
+git ls-remote --tags
+
+9. 可登录远程仓库再次确认。
+```
+
+# 删除全部历史记录
+```dotnetcli
+把旧项目提交到git上，但是会有一些历史记录，这些历史记录中可能会有项目密码等敏感信息。
+如何删除这些历史记录，形成一个全新的仓库，并且保持代码不变呢？
+
+1.Checkout
+   git checkout --orphan latest_branch
+2. Add all the files
+   git add -A
+3. Commit the changes
+   git commit -am "commit message"
+4. Delete the branch
+   git branch -D master
+5.Rename the current branch to master
+   git branch -m master
+6.Finally, force update your repository
+   git push -f origin master
 ```
 
 # 三种合并方式对比：Squash Merge vs Merge  vs Rebase Merge
