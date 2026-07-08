@@ -14,7 +14,9 @@ git config --global alias.debug '!f() { GIT_CURL_VERBOSE=1 GIT_TRACE=1 git "$@";
 git config --global alias.lg "log --oneline --graph --decorate --all"
 git config --global alias.cloneall 'clone --recurse-submodules'
 git config --global alias.vfetch '!f() { GIT_TRACE=1 git fetch "$@"; }; f'
-
+git config --global push.default simple
+git config --global pull.rebase true
+git config --global fetch.prune true
 
 gpg --list-keys
 gpg --import public-file.key
