@@ -154,14 +154,11 @@ machine github.com
 选择到期日期。您可以选择默认值或使用日历选择器设置令牌的过期日期。
 选择您要授予此令牌的范围或权限。根据您的需求选择适当的选项，例如repo（存储库）
 ```
-# git 创建切换分支
+# git 清除reflog
 ```dotnetcli
-#创建新分支aaa
-git branch aaa 
-#切换到aaa分支
-git checkout aaa 
-#查看当前分支
-git branch   
+cd 你的仓库
+git reflog expire --all --expire=now
+git gc --prune=now --aggressive
 ```
 
 # git 你的 PR 不是基于上游最新主干开的，需要先追平再合
