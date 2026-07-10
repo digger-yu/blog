@@ -102,7 +102,28 @@ git config --global submodule."https://github.com/".url "git@github.com:"
 git clone -b main --single-branch <repository URL>
 #main 分支名
 ```
+# 统计当前仓库所有被 git 管理的文件的总行数
+```
+git ls-files | xargs wc -l
 
+# Ubuntu/Debian
+sudo apt install cloc
+# 自动识别 git 仓库，排除 ignored 文件，按语言分类
+cloc --vcs=git .
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Rust                            14            165            152           2300
+YAML                             3             53             48            503
+Markdown                         8            126              0            442
+Bourne Shell                     2             14             11             45
+C                                6              1              5             39
+TOML                             1              5              2             20
+-------------------------------------------------------------------------------
+SUM:                            34            364            218           3349
+-------------------------------------------------------------------------------
+
+```
 
 # git 调试模式
 ```
