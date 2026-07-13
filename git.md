@@ -20,7 +20,7 @@ git config --global log.showsignature true
 git config --global log.abbrevcommit true
 git config --global log.date iso
 git config --global log.decorate short
-git config --global core.autocrlf true
+git config --global core.autocrlf false
 git config --global init.defaultBranch main
 git config --global alias.tbmain '!git fetch && git rebase origin/main'
 git config --global alias.tbmaster '!git fetch && git rebase origin/master'
