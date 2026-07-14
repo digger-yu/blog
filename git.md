@@ -72,6 +72,17 @@ Enter passphrase for key '/c/Users/digger/.ssh/id_rsa':
 $ ssh-keygen -p -P 123456 -N '' -f id_rsa
 ssh-keygen -p [-P old_passphrase][-N new_passphrase] [-f keyfile]
 ```
+# git clean
+```
+# 预览会删哪些文件
+git clean -n 
+#删除所有 Untracked 文件
+git clean -f 
+#有文件夹的话用-d
+git clean -fd
+#连 .gitignore里忽略的文件也一起删
+git clean -fdx
+```
 
 # git diff
 ```dotnetcli
