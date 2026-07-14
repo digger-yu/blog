@@ -25,6 +25,8 @@ git config --global init.defaultBranch main
 git config --global alias.tbmain '!git fetch && git rebase origin/main'
 git config --global alias.tbmaster '!git fetch && git rebase origin/master'
 git config --global alias.debug '!f() { GIT_CURL_VERBOSE=1 GIT_TRACE=1 git "$@"; }; f'
+git config --global alias.amend=commit --amend --no-edit
+git config --global alias.safe=push --force-with-lease
 git config --global alias.lg "log --oneline --graph --decorate --all"
 git config --global alias.cloneall 'clone --recurse-submodules'
 git config --global alias.vfetch '!f() { GIT_TRACE=1 git fetch "$@"; }; f'
