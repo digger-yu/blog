@@ -32,6 +32,15 @@ git config --global push.default simple
 git config --global pull.rebase true
 git config --global fetch.prune true
 
+#SSH commit signing
+#git commit -S走 ssh-agent 签名，不碰 GPG 那套 pinentry
+git config --global gpg.format ssh
+git config --global user.signingkey ~/.ssh/id_ed25519.pub
+git config --global commit.gpgsign true
+1. Settings → SSH and GPG keys → New SSH key
+2. Key type​ 下拉选 Signing Key（默认是 Authentication Key，别用那个）
+3. 把 id_ed25519.pub内容原样贴进去，Add
+
 
 git config --global --unset <key>
 
