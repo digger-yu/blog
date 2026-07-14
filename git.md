@@ -32,6 +32,8 @@ git config --global push.default simple
 git config --global pull.rebase true
 git config --global fetch.prune true
 
+#git config --global alias.tbmain '!git fetch --all && git reset --hard origin/main' 
+
 #SSH commit signing
 #git commit -S走 ssh-agent 签名，不碰 GPG 那套 pinentry
 git config --global gpg.format ssh
