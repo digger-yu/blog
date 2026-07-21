@@ -54,6 +54,21 @@ gpg --sign-key B5690EEEBB952194
 
 gpg --list-keys
 ```
+# 3.1 导出密钥
+```
+导出公钥（可以随便分发给别人 / GitHub / GitLab）
+gpg --armor --export you@example.com > public.asc
+或直接用 Key ID：
+gpg --armor --export ABCDEF1234567890 > public.asc
+
+导出私钥 完整备份（主钥 + 子钥，全能）
+gpg --armor --export-secret-keys you@example.com > private-full.asc
+
+只导子钥
+gpg --armor --export-secret-subkeys you@example.com > private-sub.asc
+
+```
+
 # 4. add ssh-key
 ```
 copy your public and private key to ~/.ssh     
