@@ -1,7 +1,8 @@
 [在线命令速查表](https://digger-yu.github.io/blog/git-config-cheatsheet.html)
 
 [官方手册](https://git-scm.com/docs/git-config)
-
+# 清除全局配置
+git config --global --remove-section --all
 
 # personal 
 ```dotnetcli
