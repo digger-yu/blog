@@ -46,7 +46,7 @@ git config --local gpg.ssh.allowedsignersfile=C:/Users/Administrator/.ssh/allowe
 
 
 echo "you@example.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI..." >> ~/.config/git/allowed_signers
-git config --local gpg.ssh.allowedsignersfile ~/.config/ssh/allowed_signers
+git config --local gpg.ssh.allowedsignersfile ~/.config/git/allowed_signers
 
 
 1. Settings → SSH and GPG keys → New SSH key
