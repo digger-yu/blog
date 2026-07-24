@@ -1,0 +1,363 @@
+# ============================================================
+# 全局默认：自动检测文本文件，统一存储为 LF
+# ============================================================
+*                       text=auto eol=lf
+
+# 图片
+*.png                  binary
+*.jpg                  binary
+*.jpeg                 binary
+*.gif                  binary
+*.bmp                  binary
+*.ico                  binary
+*.svg                  text
+*.webp                 binary
+*.avif                 binary
+
+# 字体
+*.ttf                  binary
+*.otf                  binary
+*.woff                 binary
+*.woff2                binary
+*.eot                  binary
+
+# 音频 / 视频
+*.mp3                  binary
+*.wav                  binary
+*.ogg                  binary
+*.mp4                  binary
+*.mov                  binary
+*.avi                  binary
+*.webm                 binary
+
+# 压缩包 / 归档
+*.zip                  binary
+*.tar                  binary
+*.gz                   binary
+*.tgz                  binary
+*.xz                   binary
+*.bz2                  binary
+*.7z                   binary
+*.rar                  binary
+
+# 编译产物 / 可执行文件
+*.exe                  binary
+*.dll                  binary
+*.so                   binary
+*.dylib                binary
+*.o                    binary
+*.obj                  binary
+*.a                    binary
+*.lib                  binary
+*.pyc                  binary
+*.class                binary
+
+# 文档二进制格式
+*.pdf                  binary
+*.doc                  binary
+*.docx                 binary
+*.ppt                  binary
+*.pptx                 binary
+*.xls                  binary
+*.xlsx                 binary
+
+# 数据库 / 数据文件
+*.sqlite               binary
+*.db                   binary
+*.sqlite3              binary
+
+
+# 源码文件 —— 显式声明为文本，确保 LF
+# C / C++ / 头文件
+*.c                    text eol=lf
+*.h                    text eol=lf
+*.cpp                  text eol=lf
+*.cc                   text eol=lf
+*.cxx                  text eol=lf
+*.hpp                  text eol=lf
+*.hh                   text eol=lf
+*.hxx                  text eol=lf
+*.inc                  text eol=lf
+*.inl                  text eol=lf
+
+# Objective-C / Objective-C++
+*.m                    text eol=lf
+*.mm                   text eol=lf
+
+# 汇编
+*.s                    text eol=lf
+*.S                    text eol=lf
+*.asm                  text eol=lf
+
+# Rust
+*.rs                   text eol=lf
+
+# Go
+*.go                   text eol=lf
+
+# Java / Kotlin / Scala
+*.java                 text eol=lf
+*.kt                   text eol=lf
+*.scala                text eol=lf
+
+# Python
+*.py                   text eol=lf
+*.pyi                  text eol=lf
+*.pyx                  text eol=lf
+
+# JavaScript / TypeScript
+*.js                   text eol=lf
+*.jsx                  text eol=lf
+*.ts                   text eol=lf
+*.tsx                  text eol=lf
+*.mjs                  text eol=lf
+*.cjs                  text eol=lf
+
+# Web
+*.html                 text eol=lf
+*.htm                  text eol=lf
+*.css                  text eol=lf
+*.scss                 text eol=lf
+*.sass                 text eol=lf
+*.less                 text eol=lf
+*.vue                  text eol=lf
+*.svelte               text eol=lf
+
+# 配置 / 数据格式
+*.json                 text eol=lf
+*.yaml                 text eol=lf
+*.yml                  text eol=lf
+*.toml                 text eol=lf
+*.xml                  text eol=lf
+*.ini                  text eol=lf
+*.cfg                  text eol=lf
+*.conf                 text eol=lf
+*.env.example          text eol=lf
+
+# Shell
+*.sh                   text eol=lf
+*.bash                 text eol=lf
+*.zsh                  text eol=lf
+*.fish                 text eol=lf
+
+# PowerShell
+*.ps1                  text eol=lf
+*.psm1                 text eol=lf
+*.psd1                 text eol=lf
+*.ps1xml              text eol=lf
+*.cdxml               text eol=lf
+*.pssc                text eol=lf
+*.clixml              binary
+
+# Windows 批处理（CMD.exe 依赖 CRLF）
+*.bat                  text eol=crlf
+*.cmd                  text eol=crlf
+
+# CMake / Make
+CMakeLists.txt         text eol=lf
+*.cmake                text eol=lf
+Makefile               text eol=lf
+makefile               text eol=lf
+GNUmakefile            text eol=lf
+*.mk                   text eol=lf
+
+# Meson
+meson.build            text eol=lf
+meson_options.txt      text eol=lf
+
+# Visual Studio（仅 MSVC 项目需要，纯 Clang/GCC 项目可删除）
+*.sln                  text eol=crlf
+*.vcxproj              text eol=crlf
+*.vcxproj.filters      text eol=crlf
+
+# Windows 资源 & 模块定义
+*.rc                   text eol=lf
+*.manifest             text eol=lf
+*.def                  text eol=lf
+
+# 文档
+*.md                   text eol=lf whitespace=-trailing-space
+*.markdown             text eol=lf
+*.rst                  text eol=lf
+*.txt                  text eol=lf
+LICENSE                text eol=lf
+COPYING                text eol=lf
+AUTHORS                text eol=lf
+CHANGELOG              text eol=lf
+NEWS                   text eol=lf
+README                 text eol=lf
+
+# 编译器开发专项
+# Lex / Flex
+*.l                     text eol=lf
+*.lex                   text eol=lf
+
+# Yacc / Bison
+*.y                     text eol=lf
+*.yy                    text eol=lf
+*.ypp                   text eol=lf
+
+# 链接器脚本
+*.ld                    text eol=lf
+*.lds                   text eol=lf
+*.map                   text eol=lf -diff
+
+# LLVM
+*.ll                    text eol=lf
+*.mir                   text eol=lf
+*.bc                    binary
+
+# DWARF
+*.dwo                   binary
+*.dwp                   binary
+
+# 测试
+*.lit                   text eol=lf
+*.exp                   text eol=lf
+*.sum                   text eol=lf -diff
+*.expected              text eol=lf
+*.golden                text eol=lf
+*.out                   text eol=lf
+*.output                text eol=lf
+
+# 编译器响应文件
+*.rsp                   text eol=lf
+
+# 补丁 & 日志
+*.patch                 text eol=lf
+*.diff                  text eol=lf
+*.log                   text eol=lf -diff
+
+# 补充编程语言
+*.swift                text eol=lf
+*.dart                 text eol=lf
+*.cu                   text eol=lf
+*.cuh                  text eol=lf
+*.cl                   text eol=lf
+*.glsl                 text eol=lf
+*.vert                 text eol=lf
+*.frag                 text eol=lf
+*.comp                 text eol=lf
+*.geom                 text eol=lf
+*.tesc                 text eol=lf
+*.tese                 text eol=lf
+*.hlsl                 text eol=lf
+*.v                    text eol=lf
+*.sv                   text eol=lf
+*.vh                   text eol=lf
+*.vhd                  text eol=lf
+*.vhdl                 text eol=lf
+*.hs                   text eol=lf
+*.lhs                  text eol=lf
+*.fs                   text eol=lf
+*.fsi                  text eol=lf
+*.fsx                  text eol=lf
+*.ex                   text eol=lf
+*.exs                  text eol=lf
+*.erl                  text eol=lf
+*.hrl                  text eol=lf
+*.rb                   text eol=lf
+*.rake                 text eol=lf
+Gemfile                text eol=lf
+Rakefile               text eol=lf
+*.php                  text eol=lf
+*.phtml                text eol=lf
+*.lua                  text eol=lf
+*.R                    text eol=lf
+*.r                    text eol=lf
+*.Rmd                  text eol=lf
+*.jl                   text eol=lf
+*.zig                  text eol=lf
+*.nim                  text eol=lf
+*.nims                 text eol=lf
+*.ml                   text eol=lf
+*.mli                  text eol=lf
+*.clj                  text eol=lf
+*.cljs                 text eol=lf
+*.cljc                 text eol=lf
+*.el                   text eol=lf
+*.pl                   text eol=lf
+*.pm                   text eol=lf
+*.t                    text eol=lf
+*.tcl                  text eol=lf
+*.sql                  text eol=lf
+*.vim                  text eol=lf
+
+# 数据格式 & 序列化
+*.proto                text eol=lf
+*.thrift               text eol=lf
+*.graphql              text eol=lf
+*.gql                  text eol=lf
+*.avsc                 text eol=lf
+*.csv                  text eol=lf -diff
+*.tsv                  text eol=lf -diff
+*.ipynb                text eol=lf -diff
+*.tf                   text eol=lf
+*.tfvars               text eol=lf
+*.tfstate              binary
+*.tfstate.backup       binary
+*.msgpack              binary
+*.cbor                 binary
+*.h5                   binary
+*.hdf5                 binary
+
+# 证书 & 密钥
+*.pem                  text eol=lf -diff
+*.crt                  text eol=lf -diff
+*.cer                  text eol=lf -diff
+*.pub                  text eol=lf -diff
+*.key                  binary
+*.p12                  binary
+*.pfx                  binary
+*.jks                  binary
+
+# 构建工具 & 基础设施
+BUILD                  text eol=lf
+WORKSPACE              text eol=lf
+*.bzl                  text eol=lf
+MODULE.bazel           text eol=lf
+Justfile               text eol=lf
+Taskfile.yml           text eol=lf
+Dockerfile*            text eol=lf
+.dockerignore          text eol=lf
+kustomization.yaml     text eol=lf
+Jenkinsfile            text eol=lf
+Procfile               text eol=lf
+
+# Git Diff / Merge 行为定制
+# 锁文件：union merge 减少冲突
+package-lock.json      text eol=lf -diff merge=union
+yarn.lock              text eol=lf -diff merge=union
+pnpm-lock.yaml         text eol=lf -diff merge=union
+Cargo.lock             text eol=lf -diff merge=union
+Pipfile.lock           text eol=lf -diff merge=union
+Gemfile.lock           text eol=lf -diff merge=union
+composer.lock          text eol=lf -diff merge=union
+
+# Minified 文件不 diff
+*.min.js               -diff
+*.min.css              -diff
+*.min.mjs              -diff
+
+# CHANGELOG / VERSION：union merge
+CHANGELOG*             merge=union
+VERSION                merge=union
+
+# Git 子模块
+.gitmodules            text eol=lf
+
+# 导出时排除（git archive 打包发布时自动剔除）
+.gitattributes         export-ignore
+.gitignore             export-ignore
+.gitmodules            export-ignore
+.github/               export-ignore
+.gitlab-ci.yml         export-ignore
+.travis.yml            export-ignore
+.pre-commit-config.yaml export-ignore
+.editorconfig          export-ignore
+.vscode/               export-ignore
+.idea/                 export-ignore
+tests/                 export-ignore
+test/                  export-ignore
+*.test.*               export-ignore
+*_test.*               export-ignore
