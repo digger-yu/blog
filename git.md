@@ -45,8 +45,8 @@ git config --local commit.gpgsign true
 git config --local gpg.ssh.allowedsignersfile=C:/Users/Administrator/.ssh/allowed_signers
 
 
-echo "you@example.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI..." >> ~/.config/git/allowed_signers
-git config --local gpg.ssh.allowedsignersfile ~/.config/git/allowed_signers
+echo "you@example.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI..." >> ~/.ssh/allowed_signers
+git config --local gpg.ssh.allowedsignersfile ~/.ssh/allowed_signers
 
 
 1. Settings → SSH and GPG keys → New SSH key
