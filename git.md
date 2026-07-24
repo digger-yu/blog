@@ -93,6 +93,15 @@ git clean -fd
 #连 .gitignore里忽略的文件也一起删
 git clean -fdx
 ```
+# 全局的.gitattributes 
+```
+# Linux / macOS
+git config --global core.attributesFile ~/.gitattributes_global
+
+# Windows
+git config --global core.attributesFile "%USERPROFILE%\.gitattributes_global"
+```
+
 
 # git diff
 ```dotnetcli
