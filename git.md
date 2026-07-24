@@ -44,6 +44,11 @@ git config --local user.signingkey ~/.ssh/id_ed25519.pub
 git config --local commit.gpgsign true
 git config --local gpg.ssh.allowedsignersfile=C:/Users/Administrator/.ssh/allowed_signers
 
+
+echo "you@example.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI..." >> ~/.config/git/allowed_signers
+git config --local gpg.ssh.allowedsignersfile ~/.config/ssh/allowed_signers
+
+
 1. Settings → SSH and GPG keys → New SSH key
 2. Key type​ 下拉选 Signing Key（默认是 Authentication Key，别用那个）
 3. 把 id_ed25519.pub内容原样贴进去，Add
