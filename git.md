@@ -100,6 +100,9 @@ git config --global core.attributesFile ~/.gitattributes_global
 
 # Windows
 git config --global core.attributesFile "%USERPROFILE%\.gitattributes_global"
+
+文件放好后，必须运行一次让历史文件重新规范化：
+git add --renormalize .
 ```
 
 
