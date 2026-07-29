@@ -24,6 +24,7 @@ git config --global log.decorate short
 git config --global core.autocrlf false
 git config --global init.defaultBranch main
 git config --global alias.tbmain '!git fetch && git rebase origin/main'
+git config --global alias.tbmainforce '!git fetch --all && git reset --hard origin/main' 
 git config --global alias.tbmaster '!git fetch && git rebase origin/master'
 git config --global alias.debug '!f() { GIT_CURL_VERBOSE=1 GIT_TRACE=1 git "$@"; }; f'
 git config --global alias.amend 'commit --amend --no-edit'
@@ -35,7 +36,6 @@ git config --global push.default simple
 git config --global pull.rebase true
 git config --global fetch.prune true
 
-#git config --global alias.tbmain '!git fetch --all && git reset --hard origin/main' 
 
 #SSH commit signing
 #git commit -S走 ssh-agent 签名，不碰 GPG 那套 pinentry
