@@ -92,9 +92,23 @@ git clean -f
 git clean -fd
 #连 .gitignore里忽略的文件也一起删
 git clean -fdx
+```
+# Git 的垃圾回收
+```
+Total 332 (delta 199), reused 282 (delta 185), pack-reused 0 (from 0)
+Unlink of file '.git/objects/pack/pack-8fb3bbc5598b409e7919c9da58b78d5f977a6c73.
+idx' failed. Should I try again? (y/n) n
+Unlink of file '.git/objects/pack/pack-f3326c2fc3a4d10f97175b5923c255a4079d9046.
+idx' failed. Should I try again? (y/n) n
 
-# 清理 Git 的垃圾回收
+# 遇到上面的情况可以使用下面的命令，清理 Git 的垃圾回收
 git gc --prune=now
+
+# 验证仓库完整性
+git fsck --full
+
+# 如果发现问题，修复
+git fsck --full --strict
 ```
 # 全局的.gitattributes 
 ```
