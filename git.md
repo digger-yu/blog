@@ -92,6 +92,9 @@ git clean -f
 git clean -fd
 #连 .gitignore里忽略的文件也一起删
 git clean -fdx
+
+# 清理 Git 的垃圾回收
+git gc --prune=now
 ```
 # 全局的.gitattributes 
 ```
