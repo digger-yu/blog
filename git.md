@@ -81,6 +81,16 @@ Enter passphrase for key '/c/Users/digger/.ssh/id_rsa':
 可以将密码设置为空,以源密码为123456举例,之后就不需要输入密码了
 $ ssh-keygen -p -P 123456 -N '' -f id_rsa
 ssh-keygen -p [-P old_passphrase][-N new_passphrase] [-f keyfile]
+
+
+C:\Users\Administrator\.ssh\config
+ 里加了：
+Host github.com
+    HostName ssh.github.com
+    Port 443
+    User git
+    IdentityFile ~/.ssh/id_ed25519
+    IdentitiesOnly yes
 ```
 # git clean
 ```
